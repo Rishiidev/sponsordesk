@@ -25,3 +25,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+
+# local mock data store (swap for Supabase later)
+.data/
