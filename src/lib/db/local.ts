@@ -186,6 +186,12 @@ export async function getDeals(userId: string): Promise<Deal[]> {
   const s = await readStore();
   return s.deals.filter((d) => d.userId === userId);
 }
+// Admin-only aggregate: returns every deal in the store. Only call from
+// route groups that already gate access via the admin allowlist.
+export async function getAllDeals(): Promise<Deal[]> {
+  const s = await readStore();
+  return s.deals;
+}
 export async function createDeal(data: Omit<Deal, "id" | "createdAt" | "updatedAt">): Promise<Deal> {
   return mutate(async (s) => {
     const deal: Deal = { id: uuidv4(), ...data, createdAt: nowIso(), updatedAt: nowIso() };
