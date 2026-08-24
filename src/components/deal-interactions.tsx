@@ -125,6 +125,7 @@ export function DealInteractions({
           <div className="flex justify-end">
             <button
               type="submit"
+              data-testid="submit-interaction"
               className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
             >
               Save interaction

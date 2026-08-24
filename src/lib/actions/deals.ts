@@ -59,6 +59,7 @@ export async function updateDealAction(id: string, formData: FormData) {
   const paymentTermsDays = formData.get("paymentTermsDays") as string | undefined;
   const paymentStatus = formData.get("paymentStatus") as string | undefined;
   const notes = formData.get("notes") as string | undefined;
+  const nextFollowupAt = formData.get("nextFollowupAt") as string | undefined;
 
   const data: any = {};
   if (brandId) data.brandId = brandId;
@@ -70,6 +71,10 @@ export async function updateDealAction(id: string, formData: FormData) {
   if (endDate) data.endDate = endDate;
   if (paymentTermsDays) data.paymentTermsDays = parseInt(paymentTermsDays);
   if (paymentStatus) data.paymentStatus = paymentStatus;
+  // Always set nextFollowupAt (allow clearing by passing empty string)
+  if (nextFollowupAt !== null && nextFollowupAt !== undefined) {
+    data.nextFollowupAt = nextFollowupAt || undefined;
+  }
   if (notes) data.notes = notes.trim();
 
   const deal = await updateDeal(id, data);
