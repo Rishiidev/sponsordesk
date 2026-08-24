@@ -16,6 +16,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
   const [paymentTermsDays, setPaymentTermsDays] = useState(initialData?.paymentTermsDays?.toString() || "30");
   const [notes, setNotes] = useState(initialData?.notes || "");
   const [error, setError] = useState<string | null>(null);
+  const [limitHit, setLimitHit] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -28,6 +29,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setLimitHit(false);
     try {
       const formData = new FormData();
       formData.set("brandId", brandId);
@@ -55,6 +57,9 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
         const result = await createDealAction(formData);
         if (result.success && result.deal) {
           router.push(`/deals/${result.deal.id}`);
+        } else if ((result as any).code === "limit_hit") {
+          setError(result.error || "Free tier deal limit reached.");
+          setLimitHit(true);
         } else {
           setError(result.error || "Failed to create deal");
         }
@@ -201,9 +206,19 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
         />
       </div>
       {error && (
-        <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2">
-          {error}
-        </p>
+        <div className="space-y-3">
+          <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2">
+            {error}
+          </p>
+          {limitHit && (
+            <a
+              href="/settings/billing"
+              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-ink)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+            >
+              See Pro pricing →
+            </a>
+          )}
+        </div>
       )}
       <div className="flex items-center gap-3">
         <button

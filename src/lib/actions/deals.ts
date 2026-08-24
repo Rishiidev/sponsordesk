@@ -2,6 +2,7 @@
 
 // Server actions for deals
 import { createDeal, updateDeal, deleteDeal, moveDealStage, getDeals, getBrands } from "@/lib/db/local";
+import { checkDealLimit } from "@/lib/billing/tier";
 
 export async function createDealAction(formData: FormData) {
   const brandId = formData.get("brandId") as string;
@@ -18,17 +19,17 @@ export async function createDealAction(formData: FormData) {
     return { success: false, error: "Brand, title, and stage are required" };
   }
 
-  // Free tier check: count active deals
+  // Tier-based cap. Free users get 3 active deals; Pro is unlimited.
   const userId = "demo-user-id";
-  const deals = await getDeals(userId);
-  const activeDeals = deals.filter((d) => d.stage !== "paid" && d.stage !== "lost");
-  const isPro = false; // In demo mode, always free tier
-
-  if (activeDeals.length >= 3 && !isPro) {
+  const limit = await checkDealLimit(userId);
+  if (!limit.allowed) {
     return {
       success: false,
-      error: "Free tier is limited to 3 active deals. Upgrade to Pro for unlimited.",
-    };
+      error: `Free tier is limited to ${limit.limit} active deals. Upgrade to Pro for unlimited.`,
+      code: "limit_hit",
+      currentCount: limit.currentCount,
+      limit: limit.limit,
+    } as const;
   }
 
   const deal = await createDeal({

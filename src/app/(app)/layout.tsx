@@ -26,6 +26,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
             <a href="/brands" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Brands</a>
             <a href="/deals" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Deals</a>
             <a href="/reminders" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Reminders</a>
+            <a href="/settings/billing" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Billing</a>
           </nav>
         </aside>
         {/* Main content */}
