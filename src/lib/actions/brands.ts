@@ -1,3 +1,5 @@
+"use server";
+
 // Server actions for brands
 import { createBrand, updateBrand, deleteBrand, getBrands } from "@/lib/db/local";
 

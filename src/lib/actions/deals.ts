@@ -1,3 +1,5 @@
+"use server";
+
 // Server actions for deals
 import { createDeal, updateDeal, deleteDeal, moveDealStage, getDeals, getBrands } from "@/lib/db/local";
 

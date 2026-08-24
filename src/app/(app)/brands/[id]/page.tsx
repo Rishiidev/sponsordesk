@@ -1,5 +1,9 @@
 import { getBrandsForUser } from "@/lib/actions/deals";
 import { getDealsForUser } from "@/lib/actions/deals";
+import { getContactsForBrand, getInteractionsForBrand } from "@/lib/db/local";
+import { ContactList } from "@/components/contact-list";
+import { InteractionTimeline } from "@/components/interaction-timeline";
+import { BrandDetailActions } from "@/components/brand-detail-actions";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +23,10 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
   }
 
   const brandDeals = deals.filter((d) => d.brandId === id);
+  const [contacts, interactions] = await Promise.all([
+    getContactsForBrand(id),
+    getInteractionsForBrand(id),
+  ]);
 
   return (
     <div className="max-w-[600px] space-y-6">
@@ -34,6 +42,9 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
             {brand.website}
           </a>
         )}
+        <div className="mt-3">
+          <BrandDetailActions brand={brand} deals={brandDeals} />
+        </div>
       </header>
 
       <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">
@@ -47,6 +58,14 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
             <strong>Notes:</strong> {brand.notes}
           </p>
         )}
+      </section>
+
+      <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">
+        <ContactList brandId={id} contacts={contacts} />
+      </section>
+
+      <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">
+        <InteractionTimeline brandId={id} interactions={interactions} deals={brandDeals} contacts={contacts} />
       </section>
 
       <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">

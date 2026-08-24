@@ -1,18 +1,30 @@
-"use client";
-
-import { useState } from "react";
-import { updateDealAction, deleteDealAction, moveDealStageAction } from "@/lib/actions/deals";
+import Link from "next/link";
 import { getDealsForUser, getBrandsForUser } from "@/lib/actions/deals";
 import { getRemindersForUser } from "@/lib/reminders/detect";
-import Link from "next/link";
+import { getContactsForBrand, getInteractionsForDeal } from "@/lib/db/local";
+import { DealInteractions } from "@/components/deal-interactions";
+import { DealActions } from "@/components/deal-actions";
 
 export const dynamic = "force-dynamic";
+
+function formatCurrency(cents: number | undefined, currency: string | undefined) {
+  if (!cents) return "Not specified";
+  const amount = cents / 100;
+  return currency === "INR"
+    ? `₹${amount.toLocaleString("en-IN")}`
+    : `$${amount.toLocaleString("en-US")}`;
+}
+
+function formatDate(d: string | undefined) {
+  if (!d) return "Not set";
+  return new Date(d).toLocaleDateString();
+}
 
 export default async function DealDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const deals = await getDealsForUser();
   const brands = await getBrandsForUser();
-  const reminders = await getRemindersForUser("demo-user-id"); // demo user ID
+  const reminders = await getRemindersForUser("demo-user-id");
   const deal = deals.find((d) => d.id === id);
 
   if (!deal) {
@@ -25,6 +37,10 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
   }
 
   const brand = brands.find((b) => b.id === deal.brandId);
+  const [dealInteractions, dealContacts] = await Promise.all([
+    getInteractionsForDeal(id),
+    getContactsForBrand(deal.brandId),
+  ]);
   const isOverdue =
     deal.nextFollowupAt && new Date(deal.nextFollowupAt) < new Date() && deal.stage !== "paid" && deal.stage !== "lost";
 
@@ -39,7 +55,7 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
 
       <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">
         <h2 className="text-[14px] font-semibold text-[var(--color-ink)]">Details</h2>
-        <div className="space-y-4">
+        <div className="mt-4 space-y-4">
           <div>
             <p className="text-[13px] font-medium text-[var(--color-ink-3)]">Brand</p>
             <p className="mt-1 text-[14px] text-[var(--color-ink)]">{brand?.name || "Unknown"}</p>
@@ -67,40 +83,24 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
           <div>
             <p className="text-[13px] font-medium text-[var(--color-ink-3)]">Amount</p>
             <p className="mt-1 text-[14px] text-[var(--color-ink)]">
-              {deal.amountCents
-                ? `$${(deal.amountCents / 100).toLocaleString()} ${deal.currency}`
-                : "Not specified"}
-            </p>
-          </div>
-          <div>
-            <p className="text-[13px] font-medium text-[var(--color-ink-3)]">Currency</p>
-            <p className="mt-1 text-[14px] text-[var(--color-ink)]">
-              {deal.currency || "USD"}
+              {formatCurrency(deal.amountCents, deal.currency)} {deal.amountCents ? deal.currency : ""}
             </p>
           </div>
           <div>
             <p className="text-[13px] font-medium text-[var(--color-ink-3)]">Start date</p>
-            <p className="mt-1 text-[14px] text-[var(--color-ink)]">
-              {deal.startDate ? new Date(deal.startDate).toLocaleDateString() : "Not set"}
-            </p>
+            <p className="mt-1 text-[14px] text-[var(--color-ink)]">{formatDate(deal.startDate)}</p>
           </div>
           <div>
             <p className="text-[13px] font-medium text-[var(--color-ink-3)]">End date</p>
-            <p className="mt-1 text-[14px] text-[var(--color-ink)]">
-              {deal.endDate ? new Date(deal.endDate).toLocaleDateString() : "Not set"}
-            </p>
+            <p className="mt-1 text-[14px] text-[var(--color-ink)]">{formatDate(deal.endDate)}</p>
           </div>
           <div>
             <p className="text-[13px] font-medium text-[var(--color-ink-3)]">Payment terms</p>
-            <p className="mt-1 text-[14px] text-[var(--color-ink)]">
-              {deal.paymentTermsDays || 30} days
-            </p>
+            <p className="mt-1 text-[14px] text-[var(--color-ink)]">{deal.paymentTermsDays || 30} days</p>
           </div>
           <div>
             <p className="text-[13px] font-medium text-[var(--color-ink-3)]">Payment status</p>
-            <p className="mt-1 text-[14px] text-[var(--color-ink)]">
-              {deal.paymentStatus || "pending"}
-            </p>
+            <p className="mt-1 text-[14px] text-[var(--color-ink)]">{deal.paymentStatus || "pending"}</p>
           </div>
           <div>
             <p className="text-[13px] font-medium text-[var(--color-ink-3)]">Next follow-up</p>
@@ -123,89 +123,10 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
         </div>
       </section>
 
-      <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">
-        <h2 className="text-[14px] font-semibold text-[var(--color-ink)]">Actions</h2>
-        <div className="space-y-3">
-          <div className="flex gap-3">
-            {/* Edit form */}
-            <form action={async (formData) => {
-              await updateDealAction(id, formData);
-              // Refresh the page after update
-              if (typeof window !== 'undefined') {
-                window.location.reload();
-              }
-            }}>
-              <input type="hidden" name="title" value={deal.title} />
-              <input type="hidden" name="brandId" value={deal.brandId} />
-              <input type="hidden" name="stage" value={deal.stage} />
-              <input type="hidden" name="amountCents" value={deal.amountCents?.toString() || ""} />
-              <input type="hidden" name="currency" value={deal.currency || "USD"} />
-              <input type="hidden" name="startDate" value={deal.startDate || ""} />
-              <input type="hidden" name="endDate" value={deal.endDate || ""} />
-              <input type="hidden" name="paymentTermsDays" value={deal.paymentTermsDays?.toString() || "30"} />
-              <input type="hidden" name="paymentStatus" value={deal.paymentStatus || "pending"} />
-              <input type="hidden" name="notes" value={deal.notes || ""} />
-              <button
-                type="submit"
-                className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
-              >
-                Edit
-              </button>
-            </form>
-            
-            {/* Delete form */}
-            <form action={async () => {
-              await deleteDealAction(id);
-              if (typeof window !== 'undefined') {
-                window.location.href = '/deals';
-              }
-            }}>
-              <button
-                type="submit"
-                className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink-2)] hover:bg-[var(--color-accent-soft)] hover:text-[var(--color-accent)]"
-              >
-                Delete
-              </button>
-            </form>
-          </div>
-          
-          <div className="flex gap-3">
-            {/* Move stage form */}
-            <form action={async (formData) => {
-              const newStage = formData.get("stage") as "inbound" | "negotiating" | "live" | "paid" | "lost";
-              await moveDealStageAction(id, newStage);
-              if (typeof window !== 'undefined') {
-                window.location.reload();
-              }
-            }}>
-              <input type="hidden" name="id" value={deal.id} />
-              <select name="stage" className="rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]">
-                <option value="inbound" selected={deal.stage === "inbound"}>
-                  Inbound
-                </option>
-                <option value="negotiating" selected={deal.stage === "negotiating"}>
-                  Negotiating
-                </option>
-                <option value="live" selected={deal.stage === "live"}>
-                  Live
-                </option>
-                <option value="paid" selected={deal.stage === "paid"}>
-                  Paid
-                </option>
-                <option value="lost" selected={deal.stage === "lost"}>
-                  Lost
-                </option>
-              </select>
-              <button type="submit" className="flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90">
-                Move to stage
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <DealActions deal={deal} />
 
       {reminders.overdueFollowUps.length > 0 && (
-        <section className="rounded-[12px] border border-[var(--color-line)] bg-[var(--color-accent-soft)] p-4 mb-6">
+        <section className="rounded-[12px] border border-[var(--color-line)] bg-[var(--color-accent-soft)] p-4">
           <h2 className="text-[14px] font-semibold text-[var(--color-ink)]">⚠️ Needs attention</h2>
           <p className="mt-2 text-[13px] text-[var(--color-ink)]">
             You have {reminders.overdueFollowUps.length} overdue follow-up(s). Consider updating the
@@ -213,6 +134,15 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
           </p>
         </section>
       )}
+
+      <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">
+        <DealInteractions
+          dealId={id}
+          brandId={deal.brandId}
+          interactions={dealInteractions}
+          contacts={dealContacts}
+        />
+      </section>
     </div>
   );
 }

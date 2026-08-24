@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { updateBrandAction, deleteBrandAction } from "@/lib/actions/brands";
 import { BrandForm } from "@/components/brand-form";
