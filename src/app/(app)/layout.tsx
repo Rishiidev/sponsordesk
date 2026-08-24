@@ -6,7 +6,7 @@ import DemoBanner from "@/components/demo-banner";
 export default async function AppLayout({ children }: { children: ReactNode }) {
   const user = await getCurrentUser();
   if (!user) {
-    redirect("/app/sign-in");
+    redirect("/sign-in");
   }
   return (
     <>
@@ -21,10 +21,10 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
             <span className="ml-3 text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">SponsorDesk</span>
           </div>
           <nav className="mt-6 space-y-2">
-            <a href="/app" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Dashboard</a>
-            <a href="/app/pipeline" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Pipeline</a>
-            <a href="/app/brands" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Brands</a>
-            <a href="/app/deals" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Deals</a>
+            <a href="/dashboard" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Dashboard</a>
+            <a href="/pipeline" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Pipeline</a>
+            <a href="/brands" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Brands</a>
+            <a href="/deals" className="flex w-full items-center px-4 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]">Deals</a>
           </nav>
         </aside>
         {/* Main content */}

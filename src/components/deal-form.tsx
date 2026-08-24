@@ -41,7 +41,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
       if (notes) formData.set("notes", notes);
 
       if (isEditing && initialData?.id) {
-        const result = await fetch(`/app/deals/${initialData.id}`, {
+        const result = await fetch(`/deals/${initialData.id}`, {
           method: "POST",
           body: formData,
         });
@@ -54,7 +54,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
       } else {
         const result = await createDealAction(formData);
         if (result.success && result.deal) {
-          router.push(`/app/deals/${result.deal.id}`);
+          router.push(`/deals/${result.deal.id}`);
         } else {
           setError(result.error || "Failed to create deal");
         }

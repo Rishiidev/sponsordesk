@@ -27,7 +27,7 @@ export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: 
       if (notes) formData.set("notes", notes);
 
       if (isEditing && initialData?.id) {
-        const result = await fetch(`/app/brands/${initialData.id}`, {
+        const result = await fetch(`/brands/${initialData.id}`, {
           method: "POST",
           body: formData,
         });
@@ -40,7 +40,7 @@ export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: 
       } else {
         const result = await createBrandAction(formData);
         if (result.success && result.brand) {
-          router.push(`/app/brands/${result.brand.id}`);
+          router.push(`/brands/${result.brand.id}`);
         } else {
           setError(result.error || "Failed to create brand");
         }

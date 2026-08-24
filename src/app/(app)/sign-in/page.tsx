@@ -18,7 +18,7 @@ export default function SignInPage() {
     try {
       const result = await signIn(email, password);
       if (result.success) {
-        router.push("/app");
+        router.push("/dashboard");
       } else {
         setError(result.error || "Sign in failed");
       }

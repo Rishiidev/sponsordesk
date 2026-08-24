@@ -157,7 +157,7 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
             <form action={async () => {
               await deleteDealAction(id);
               if (typeof window !== 'undefined') {
-                window.location.href = '/app/deals';
+                window.location.href = '/deals';
               }
             }}>
               <button
@@ -172,7 +172,8 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
           <div className="flex gap-3">
             {/* Move stage form */}
             <form action={async (formData) => {
-              await moveDealStageAction(id, formData.get("stage") as any);
+              const newStage = formData.get("stage") as "inbound" | "negotiating" | "live" | "paid" | "lost";
+              await moveDealStageAction(id, newStage);
               if (typeof window !== 'undefined') {
                 window.location.reload();
               }

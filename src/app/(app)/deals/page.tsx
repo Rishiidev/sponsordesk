@@ -21,7 +21,7 @@ export default async function DealsPage() {
           </p>
         </div>
         <Link
-          href="/app/deals/new"
+          href="/deals/new"
           className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
         >
           Add deal
@@ -36,7 +36,7 @@ export default async function DealsPage() {
             already.
           </p>
           <Link
-            href="/app/deals/new"
+            href="/deals/new"
             className="mt-5 inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:opacity-90"
           >
             Create your first deal
@@ -63,7 +63,7 @@ export default async function DealsPage() {
                   <tr key={deal.id} className="hover:bg-[var(--color-paper-2)]">
                     <td className="p-4">
                       <Link
-                        href={`/app/deals/${deal.id}`}
+                        href={`/deals/${deal.id}`}
                         className="font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)]"
                       >
                         {deal.title}
@@ -103,7 +103,7 @@ export default async function DealsPage() {
                     </td>
                     <td className="p-4 text-right">
                       <Link
-                        href={`/app/deals/${deal.id}`}
+                        href={`/deals/${deal.id}`}
                         className="text-[12px] text-[var(--color-accent)] hover:underline"
                       >
                         Open →

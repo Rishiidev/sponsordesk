@@ -53,7 +53,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
         <header className="flex items-center justify-between">
           <h2 className="text-[14px] font-semibold text-[var(--color-ink)]">Deals ({brandDeals.length})</h2>
           <a
-            href="/app/deals/new"
+            href="/deals/new"
             className="text-[12px] text-[var(--color-accent)] hover:underline"
           >
             Add deal →
@@ -72,7 +72,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
                   </p>
                 </div>
                 <a
-                  href={`/app/deals/${deal.id}`}
+                  href={`/deals/${deal.id}`}
                   className="text-[12px] text-[var(--color-accent)] hover:underline"
                 >
                   Open →

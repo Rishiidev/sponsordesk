@@ -41,7 +41,7 @@ export default async function AppHome() {
           </p>
         </div>
         <a
-          href="/app/pipeline"
+          href="/pipeline"
           className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
         >
           Open pipeline
@@ -81,7 +81,7 @@ export default async function AppHome() {
                       </p>
                     </div>
                     <a
-                      href={`/app/deals/${r.dealId}`}
+                      href={`/deals/${r.dealId}`}
                       className="text-[12px] text-[var(--color-accent)] hover:underline"
                     >
                       Open deal →
@@ -97,7 +97,7 @@ export default async function AppHome() {
                       </p>
                     </div>
                     <a
-                      href={`/app/deals/${r.dealId}`}
+                      href={`/deals/${r.dealId}`}
                       className="text-[12px] text-[var(--color-accent)] hover:underline"
                     >
                       Open deal →
@@ -114,17 +114,17 @@ export default async function AppHome() {
             <h2 className="text-[14px] font-semibold text-[var(--color-ink)]">Quick actions</h2>
             <ul className="mt-4 space-y-2 text-[13px]">
               <li>
-                <a className="text-[var(--color-accent)] hover:underline" href="/app/brands/new">
+                <a className="text-[var(--color-accent)] hover:underline" href="/brands/new">
                   Add a new brand →
                 </a>
               </li>
               <li>
-                <a className="text-[var(--color-accent)] hover:underline" href="/app/deals/new">
+                <a className="text-[var(--color-accent)] hover:underline" href="/deals/new">
                   Add a new deal →
                 </a>
               </li>
               <li>
-                <a className="text-[var(--color-accent)] hover:underline" href="/app/reminders">
+                <a className="text-[var(--color-accent)] hover:underline" href="/reminders">
                   Preview today's digest →
                 </a>
               </li>
@@ -141,7 +141,7 @@ export default async function AppHome() {
             talking to, then add the deal attached to it.
           </p>
           <a
-            href="/app/brands/new"
+            href="/brands/new"
             className="mt-5 inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:opacity-90"
           >
             Create your first brand

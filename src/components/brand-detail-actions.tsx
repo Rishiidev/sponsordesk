@@ -15,7 +15,7 @@ export function BrandDetailActions({ brand, deals }: { brand: any; deals: any[] 
   async function handleDelete() {
     if (confirm("Delete this brand? This cannot be undone.")) {
       await deleteBrandAction(brand.id);
-      window.location.href = "/app/brands";
+      window.location.href = "/brands";
     }
   }
 

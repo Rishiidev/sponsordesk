@@ -18,7 +18,7 @@ export default async function BrandsPage() {
           </p>
         </div>
         <Link
-          href="/app/brands/new"
+          href="/brands/new"
           className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
         >
           Add brand
@@ -33,7 +33,7 @@ export default async function BrandsPage() {
             the full history in one place.
           </p>
           <Link
-            href="/app/brands/new"
+            href="/brands/new"
             className="mt-5 inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:opacity-90"
           >
             Create your first brand
@@ -44,7 +44,7 @@ export default async function BrandsPage() {
           {brands.map((brand) => (
             <li key={brand.id} className="py-4">
               <Link
-                href={`/app/brands/${brand.id}`}
+                href={`/brands/${brand.id}`}
                 className="flex items-center justify-between gap-4"
               >
                 <div>
