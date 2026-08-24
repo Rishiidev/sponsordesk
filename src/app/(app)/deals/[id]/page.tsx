@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { getDealsForUser, getBrandsForUser } from "@/lib/actions/deals";
 import { getRemindersForUser } from "@/lib/reminders/detect";
-import { getContactsForBrand, getInteractionsForDeal } from "@/lib/db/local";
+import { getContactsForBrand, getInteractionsForDeal, getDeliverablesForDeal } from "@/lib/db/local";
 import { DealInteractions } from "@/components/deal-interactions";
 import { DealActions } from "@/components/deal-actions";
+import { DeliverableChecklist } from "@/components/deliverable-checklist";
 
 export const dynamic = "force-dynamic";
 
@@ -37,9 +38,10 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
   }
 
   const brand = brands.find((b) => b.id === deal.brandId);
-  const [dealInteractions, dealContacts] = await Promise.all([
+  const [dealInteractions, dealContacts, dealDeliverables] = await Promise.all([
     getInteractionsForDeal(id),
     getContactsForBrand(deal.brandId),
+    getDeliverablesForDeal(id),
   ]);
   const isOverdue =
     deal.nextFollowupAt && new Date(deal.nextFollowupAt) < new Date() && deal.stage !== "paid" && deal.stage !== "lost";
@@ -124,6 +126,10 @@ export default async function DealDetailPage({ params }: { params: Promise<{ id:
       </section>
 
       <DealActions deal={deal} />
+
+      <section className="rounded-[12px] border border-[var(--color-line)] bg-white p-6">
+        <DeliverableChecklist dealId={id} deliverables={dealDeliverables} />
+      </section>
 
       {reminders.overdueFollowUps.length > 0 && (
         <section className="rounded-[12px] border border-[var(--color-line)] bg-[var(--color-accent-soft)] p-4">
