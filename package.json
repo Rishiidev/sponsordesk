@@ -13,11 +13,13 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@phosphor-icons/react": "^2.1.7",
+    "@serwist/next": "^9.5.12",
     "motion": "^11.18.0",
     "next": "15.1.12",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "resend": "^4.0.1",
+    "serwist": "^9.5.12",
     "uuid": "^14.0.2"
   },
   "devDependencies": {
