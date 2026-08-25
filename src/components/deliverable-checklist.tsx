@@ -6,6 +6,7 @@ import {
   toggleDeliverableCompleteAction,
   deleteDeliverableAction,
 } from "@/lib/actions/deliverables";
+import { success as hapticSuccess, tap as hapticTap } from "@/lib/haptics";
 import type { Deliverable, DeliverablePlatform, DeliverableContentType } from "@/lib/db/local";
 
 const PLATFORM_LABEL: Record<DeliverablePlatform, string> = {
@@ -53,11 +54,13 @@ export function DeliverableChecklist({ dealId, deliverables }: { dealId: string;
   }
 
   async function handleToggle(d: Deliverable) {
+    hapticSuccess();
     await toggleDeliverableCompleteAction(d.id, !d.completed);
     window.location.reload();
   }
 
   async function handleDelete(id: string, title: string) {
+    hapticTap();
     if (!confirm(`Delete deliverable "${title}"?`)) return;
     await deleteDeliverableAction(id);
     window.location.reload();
@@ -91,7 +94,7 @@ export function DeliverableChecklist({ dealId, deliverables }: { dealId: string;
               name="title"
               required
               placeholder="e.g., Q1 YouTube integration video"
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           <div className="grid grid-cols-3 gap-3">
@@ -100,7 +103,7 @@ export function DeliverableChecklist({ dealId, deliverables }: { dealId: string;
               <input
                 name="dueDate"
                 type="date"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
             <div>
@@ -108,7 +111,7 @@ export function DeliverableChecklist({ dealId, deliverables }: { dealId: string;
               <select
                 name="platform"
                 defaultValue="youtube"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               >
                 <option value="youtube">YouTube</option>
                 <option value="instagram">Instagram</option>
@@ -123,7 +126,7 @@ export function DeliverableChecklist({ dealId, deliverables }: { dealId: string;
               <select
                 name="contentType"
                 defaultValue="integration"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               >
                 <option value="integration">Integration</option>
                 <option value="dedicated">Dedicated</option>
@@ -138,14 +141,14 @@ export function DeliverableChecklist({ dealId, deliverables }: { dealId: string;
             <textarea
               name="notes"
               rows={2}
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           <div className="flex justify-end">
             <button
               type="submit"
               data-testid="submit-deliverable"
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
             >
               Add deliverable
             </button>
@@ -225,7 +228,7 @@ function DeliverableRow({
       <button
         onClick={() => onToggle(d)}
         aria-label={d.completed ? "Mark incomplete" : "Mark complete"}
-        className={`mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-[4px] border-2 ${
+        className={`mt-0.5 flex h-7 w-7 min-h-[28px] flex-none items-center justify-center rounded-[4px] border-2 touch-manipulation ${
           d.completed
             ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-white"
             : overdue

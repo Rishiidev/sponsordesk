@@ -36,7 +36,7 @@ export default function HomePage() {
           </a>
           <a
             href="#waitlist"
-            className="inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-3.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
+            className="inline-flex min-h-[44px] h-11 touch-manipulation items-center rounded-[6px] bg-[var(--color-ink)] px-3.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
           >
             Get early access
           </a>
@@ -135,7 +135,7 @@ export default function HomePage() {
             </p>
             <a
               href="#waitlist"
-              className="mt-6 inline-flex h-10 w-full items-center justify-center rounded-[var(--radius-tight)] bg-[var(--color-ink)] text-[14px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
+              className="mt-6 inline-flex min-h-[44px] h-11 touch-manipulation w-full items-center justify-center rounded-[var(--radius-tight)] bg-[var(--color-ink)] text-[14px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
             >
               Join the waitlist
             </a>
@@ -158,7 +158,7 @@ export default function HomePage() {
             </p>
             <a
               href="#waitlist"
-              className="mt-6 inline-flex h-10 w-full items-center justify-center rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-white text-[14px] font-medium text-[var(--color-ink)] hover:border-[var(--color-ink)] transition-colors"
+              className="mt-6 inline-flex min-h-[44px] h-11 touch-manipulation w-full items-center justify-center rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-white text-[14px] font-medium text-[var(--color-ink)] hover:border-[var(--color-ink)] transition-colors"
             >
               Notify me at launch
             </a>

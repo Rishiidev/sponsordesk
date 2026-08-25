@@ -45,7 +45,7 @@ export function ContactList({ brandId, contacts }: { brandId: string; contacts: 
               name="name"
               required
               placeholder="Jane Doe"
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -54,7 +54,7 @@ export function ContactList({ brandId, contacts }: { brandId: string; contacts: 
               <input
                 name="role"
                 placeholder="Head of Marketing"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
             <div>
@@ -63,7 +63,7 @@ export function ContactList({ brandId, contacts }: { brandId: string; contacts: 
                 name="email"
                 type="email"
                 placeholder="jane@brand.com"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
           </div>
@@ -73,7 +73,7 @@ export function ContactList({ brandId, contacts }: { brandId: string; contacts: 
               <input
                 name="twitter"
                 placeholder="@jane"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
             <div>
@@ -81,7 +81,7 @@ export function ContactList({ brandId, contacts }: { brandId: string; contacts: 
               <input
                 name="linkedin"
                 placeholder="linkedin.com/in/jane"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
           </div>
@@ -91,14 +91,14 @@ export function ContactList({ brandId, contacts }: { brandId: string; contacts: 
               name="notes"
               rows={2}
               placeholder="Any context worth remembering."
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           <div className="flex justify-end">
             <button
               type="submit"
               data-testid="submit-contact"
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
             >
               Add contact
             </button>

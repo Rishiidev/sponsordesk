@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBrandAction } from "@/lib/actions/brands";
+import { success as hapticSuccess, tap as hapticTap } from "@/lib/haptics";
 
 export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: any; isEditing?: boolean; onCancel?: () => void }) {
   const [name, setName] = useState(initialData?.name || "");
@@ -16,6 +17,7 @@ export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: 
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    hapticTap();
     setLoading(true);
     setError(null);
     try {
@@ -33,6 +35,7 @@ export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: 
         });
         const data = await result.json();
         if (data.success) {
+          hapticSuccess();
           router.refresh();
         } else {
           setError(data.error || "Failed to update brand");
@@ -40,6 +43,7 @@ export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: 
       } else {
         const result = await createBrandAction(formData);
         if (result.success && result.brand) {
+          hapticSuccess();
           router.push(`/brands/${result.brand.id}`);
         } else {
           setError(result.error || "Failed to create brand");
@@ -53,7 +57,7 @@ export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5 pb-24 md:pb-5">
       <div>
         <label htmlFor="name" className="mb-2 block text-[13px] font-medium text-[var(--color-ink)]">
           Brand name <span className="text-[var(--color-accent)]">*</span>
@@ -119,18 +123,31 @@ export function BrandForm({ initialData, isEditing, onCancel }: { initialData?: 
         />
       </div>
       {error && (
-        <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2">
+        <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2.5">
           {error}
         </p>
       )}
-      <div className="flex items-center gap-3">
-        <button
-          type="submit"
-          disabled={loading}
-          className="flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
-        >
-          {loading ? "Saving..." : isEditing ? "Save changes" : "Create brand"}
-        </button>
+      <div className="sticky bottom-0 -mx-6 mt-6 border-t border-[var(--color-line)] bg-gradient-to-t from-[var(--color-paper)] via-[var(--color-paper)] to-transparent pt-6 md:static md:mx-0 md:border-0 md:bg-none md:pt-0"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      >
+        <div className="flex items-center gap-3 px-6 md:px-0">
+          <button
+            type="submit"
+            disabled={loading}
+            className="inline-flex min-h-[44px] h-12 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-5 text-[14px] font-medium text-white hover:opacity-90 disabled:opacity-50"
+          >
+            {loading ? "Saving..." : isEditing ? "Save changes" : "Create brand"}
+          </button>
+          {onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="inline-flex min-h-[44px] h-12 touch-manipulation items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-4 text-[14px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
       </div>
     </form>
   );

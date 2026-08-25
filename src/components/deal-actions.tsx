@@ -47,13 +47,13 @@ export function DealActions({ deal }: { deal: Deal }) {
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => setEditing(true)}
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
             >
               Edit
             </button>
             <button
               onClick={handleDelete}
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink-2)] hover:bg-[var(--color-accent-soft)] hover:text-[var(--color-accent)]"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink-2)] hover:bg-[var(--color-accent-soft)] hover:text-[var(--color-accent)]"
             >
               Delete
             </button>
@@ -62,7 +62,7 @@ export function DealActions({ deal }: { deal: Deal }) {
             <select
               name="stage"
               defaultValue={deal.stage}
-              className="rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             >
               <option value="inbound">Inbound</option>
               <option value="negotiating">Negotiating</option>
@@ -72,7 +72,7 @@ export function DealActions({ deal }: { deal: Deal }) {
             </select>
             <button
               type="submit"
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
             >
               Move to stage
             </button>
@@ -88,7 +88,7 @@ export function DealActions({ deal }: { deal: Deal }) {
               name="title"
               required
               defaultValue={deal.title}
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -98,7 +98,7 @@ export function DealActions({ deal }: { deal: Deal }) {
                 name="amountCents"
                 type="number"
                 defaultValue={deal.amountCents?.toString() || ""}
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
             <div>
@@ -106,7 +106,7 @@ export function DealActions({ deal }: { deal: Deal }) {
               <input
                 name="currency"
                 defaultValue={deal.currency || "USD"}
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
           </div>
@@ -117,7 +117,7 @@ export function DealActions({ deal }: { deal: Deal }) {
                 name="startDate"
                 type="date"
                 defaultValue={deal.startDate || ""}
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
             <div>
@@ -126,7 +126,7 @@ export function DealActions({ deal }: { deal: Deal }) {
                 name="endDate"
                 type="date"
                 defaultValue={deal.endDate || ""}
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
           </div>
@@ -137,7 +137,7 @@ export function DealActions({ deal }: { deal: Deal }) {
                 name="paymentTermsDays"
                 type="number"
                 defaultValue={deal.paymentTermsDays?.toString() || "30"}
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
             <div>
@@ -145,7 +145,7 @@ export function DealActions({ deal }: { deal: Deal }) {
               <input
                 name="paymentStatus"
                 defaultValue={deal.paymentStatus || "pending"}
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
           </div>
@@ -155,7 +155,7 @@ export function DealActions({ deal }: { deal: Deal }) {
               name="nextFollowupAt"
               type="date"
               defaultValue={deal.nextFollowupAt ? deal.nextFollowupAt.slice(0, 10) : ""}
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           <div>
@@ -164,7 +164,7 @@ export function DealActions({ deal }: { deal: Deal }) {
               name="notes"
               rows={3}
               defaultValue={deal.notes || ""}
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           {error && (
@@ -174,14 +174,14 @@ export function DealActions({ deal }: { deal: Deal }) {
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
             >
               {saving ? "Saving..." : "Save changes"}
             </button>
             <button
               type="button"
               onClick={() => setEditing(false)}
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink-2)] hover:bg-[var(--color-paper-2)]"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink-2)] hover:bg-[var(--color-paper-2)]"
             >
               Cancel
             </button>

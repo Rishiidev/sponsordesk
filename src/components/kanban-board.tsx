@@ -9,6 +9,7 @@ import {
   PointerSensor,
   type DragEndEvent,
 } from "@dnd-kit/core";
+import { success as hapticSuccess } from "@/lib/haptics";
 
 interface KanbanBoardProps {
   deals: Array<{
@@ -82,6 +83,7 @@ export default function KanbanBoard({ deals, onMoveDeal }: KanbanBoardProps) {
         ...prev,
         [activeDealId]: { ...prev[activeDealId], stage: newStage },
       }));
+      hapticSuccess();
     } catch (error) {
       console.error("Failed to move deal:", error);
       // Revert optimistic update would happen here in a real app

@@ -269,13 +269,13 @@ export function OnboardingFlow() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="/settings/billing"
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90"
             >
               See pricing →
             </a>
             <a
               href="/dashboard"
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
             >
               Go to dashboard
             </a>
@@ -399,7 +399,7 @@ function StepNav({
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex h-9 items-center rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
+            className="inline-flex min-h-[44px] h-11 touch-manipulation items-center rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
           >
             {submitting ? "Saving..." : submitLabel}
           </button>
@@ -408,7 +408,7 @@ function StepNav({
             type="button"
             disabled={nextDisabled}
             onClick={() => (onNextClick ? onNextClick() : onNext?.())}
-            className="inline-flex h-9 items-center rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
+            className="inline-flex min-h-[44px] h-11 touch-manipulation items-center rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
           >
             {nextLabel}
           </button>

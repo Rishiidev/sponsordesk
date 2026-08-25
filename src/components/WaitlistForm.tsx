@@ -108,7 +108,7 @@ export function WaitlistForm() {
             required
             placeholder="you@yourchannel.com"
             autoComplete="email"
-            className="w-full rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3.5 py-2.5 text-[15px] text-[var(--color-ink)] placeholder:text-[var(--color-ink-3)] outline-none transition-colors focus:border-[var(--color-ink)] focus:bg-white"
+            className="w-full rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3.5 py-2.5.5 text-[15px] text-[var(--color-ink)] placeholder:text-[var(--color-ink-3)] outline-none transition-colors focus:border-[var(--color-ink)] focus:bg-white"
           />
         </Field>
 
@@ -135,7 +135,7 @@ export function WaitlistForm() {
             rows={2}
             maxLength={200}
             placeholder="e.g. I forget to follow up after 2 weeks and lose the deal."
-            className="w-full resize-none rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3.5 py-2.5 text-[15px] text-[var(--color-ink)] placeholder:text-[var(--color-ink-3)] outline-none transition-colors focus:border-[var(--color-ink)] focus:bg-white"
+            className="w-full resize-none rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3.5 py-2.5.5 text-[15px] text-[var(--color-ink)] placeholder:text-[var(--color-ink-3)] outline-none transition-colors focus:border-[var(--color-ink)] focus:bg-white"
           />
         </Field>
 
@@ -210,7 +210,7 @@ function Select({
       name={name}
       defaultValue=""
       required
-      className="w-full appearance-none rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3.5 py-2.5 text-[15px] text-[var(--color-ink)] outline-none transition-colors focus:border-[var(--color-ink)] focus:bg-white"
+      className="w-full appearance-none rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3.5 py-2.5.5 text-[15px] text-[var(--color-ink)] outline-none transition-colors focus:border-[var(--color-ink)] focus:bg-white"
       style={{
         backgroundImage:
           'url("data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2371717a%22 stroke-width=%222%22><polyline points=%226 9 12 15 18 9%22/></svg>")',

@@ -50,7 +50,7 @@ export default async function PipelinePage() {
         </div>
         <Link
           href="/deals/new"
-          className="inline-flex h-9 items-center justify-center gap-2 rounded-[var(--radius-tight)] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
+          className="inline-flex min-h-[44px] h-11 touch-manipulation items-center justify-center gap-2 rounded-[var(--radius-tight)] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
         >
           New deal
           <span aria-hidden>+</span>
@@ -68,7 +68,7 @@ export default async function PipelinePage() {
           </p>
           <Link
             href="/deals/new"
-            className="mt-5 inline-flex h-9 items-center rounded-[var(--radius-tight)] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
+            className="mt-5 inline-flex min-h-[44px] h-11 touch-manipulation items-center rounded-[var(--radius-tight)] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
           >
             Add your first deal
           </Link>

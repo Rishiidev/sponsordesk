@@ -22,24 +22,31 @@ export default async function DealsPage() {
         </div>
         <Link
           href="/deals/new"
-          className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+          className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
         >
           Add deal
         </Link>
       </header>
 
       {deals.length === 0 ? (
-        <div className="rounded-[12px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-2)] p-8 text-center">
-          <h2 className="text-[18px] font-semibold text-[var(--color-ink)]">No deals yet</h2>
-          <p className="mx-auto mt-2 max-w-md text-[13px] text-[var(--color-ink-3)]">
-            Add your first deal to start tracking. You'll need to create a brand first if you haven't
-            already.
+        <div className="rounded-[12px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-2)] p-8 sm:p-12 text-center">
+          <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-paper)] border border-[var(--color-line)] sm:h-24 sm:w-24">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--color-ink-3)]">
+              <rect x="3" y="6" width="18" height="14" rx="2" />
+              <path d="M3 10h18" />
+              <path d="M8 14h3" strokeLinecap="round" />
+            </svg>
+          </div>
+          <h2 className="text-[20px] font-semibold text-[var(--color-ink)]">No deals yet</h2>
+          <p className="mx-auto mt-2 max-w-md text-[14px] text-[var(--color-ink-3)]">
+            Add your first deal to start tracking. You'll need to create a brand first if you haven't already.
           </p>
           <Link
             href="/deals/new"
-            className="mt-5 inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:opacity-90"
+            className="mt-6 inline-flex min-h-[44px] h-12 touch-manipulation items-center justify-center gap-2 rounded-[6px] bg-[var(--color-ink)] px-5 text-[14px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
           >
-            Create your first deal
+            Add your first deal
+            <span aria-hidden>→</span>
           </Link>
         </div>
       ) : (

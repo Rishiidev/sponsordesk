@@ -121,7 +121,7 @@ export default async function BillingPage({
               type="button"
               disabled
               title="Razorpay integration pending"
-              className="inline-flex h-10 items-center gap-2 rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white opacity-50 cursor-not-allowed"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white opacity-50 cursor-not-allowed"
             >
               Coming soon, Razorpay integration pending
             </button>

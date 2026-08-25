@@ -78,7 +78,7 @@ export function DealInteractions({
                 name="type"
                 required
                 defaultValue="email"
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               >
                 <option value="email">Email</option>
                 <option value="call">Call</option>
@@ -93,7 +93,7 @@ export function DealInteractions({
                 name="occurredAt"
                 type="datetime-local"
                 defaultValue={new Date().toISOString().slice(0, 16)}
-                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+                className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
               />
             </div>
           </div>
@@ -102,7 +102,7 @@ export function DealInteractions({
             <select
               name="contactId"
               defaultValue=""
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             >
               <option value="">— None —</option>
               {contacts.map((c) => (
@@ -119,14 +119,14 @@ export function DealInteractions({
               required
               rows={3}
               placeholder="What was said, decided, promised?"
-              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2 text-[13px]"
+              className="mt-1 block w-full rounded-[6px] border border-[var(--color-line)] bg-white px-3 py-2.5 text-[13px]"
             />
           </div>
           <div className="flex justify-end">
             <button
               type="submit"
               data-testid="submit-interaction"
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
             >
               Save interaction
             </button>
@@ -142,7 +142,7 @@ export function DealInteractions({
             const contact = contacts.find((c) => c.id === i.contactId);
             return (
               <li key={i.id} className="flex gap-3 rounded-[8px] border border-[var(--color-line)] bg-[var(--color-paper-2)] p-3">
-                <div className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-[var(--color-accent-soft)] text-[14px] font-semibold text-[var(--color-accent)]">
+                <div className="flex min-h-[44px] h-11 touch-manipulation w-9 flex-none items-center justify-center rounded-full bg-[var(--color-accent-soft)] text-[14px] font-semibold text-[var(--color-accent)]">
                   {TYPE_GLYPH[i.type]}
                 </div>
                 <div className="flex-1">

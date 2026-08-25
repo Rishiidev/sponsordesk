@@ -19,24 +19,31 @@ export default async function BrandsPage() {
         </div>
         <Link
           href="/brands/new"
-          className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+          className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-4 text-[14px] font-medium text-white hover:opacity-90"
         >
           Add brand
+          <span aria-hidden>+</span>
         </Link>
       </header>
 
       {brands.length === 0 ? (
-        <div className="rounded-[12px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-2)] p-8 text-center">
-          <h2 className="text-[18px] font-semibold text-[var(--color-ink)]">No brands yet</h2>
-          <p className="mx-auto mt-2 max-w-md text-[13px] text-[var(--color-ink-3)]">
-            Add your first brand to start tracking deals. You'll attach deals to brands so you can see
-            the full history in one place.
+        <div className="rounded-[12px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-2)] p-8 sm:p-12 text-center">
+          <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-paper)] border border-[var(--color-line)] sm:h-24 sm:w-24">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--color-ink-3)]">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M9 9h6M9 13h6M9 17h4" strokeLinecap="round" />
+            </svg>
+          </div>
+          <h2 className="text-[20px] font-semibold text-[var(--color-ink)]">No brands yet</h2>
+          <p className="mx-auto mt-2 max-w-md text-[14px] text-[var(--color-ink-3)]">
+            Add your first brand to start tracking deals. You'll attach deals to brands so you can see the full history in one place.
           </p>
           <Link
             href="/brands/new"
-            className="mt-5 inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:opacity-90"
+            className="mt-6 inline-flex min-h-[44px] h-12 touch-manipulation items-center justify-center gap-2 rounded-[6px] bg-[var(--color-ink)] px-5 text-[14px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
           >
-            Create your first brand
+            Add your first brand
+            <span aria-hidden>→</span>
           </Link>
         </div>
       ) : (

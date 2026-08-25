@@ -28,7 +28,7 @@ export function QuoteWall() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15, margin: "0px 0px -10% 0px" }}
           transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="border-l-2 border-[var(--color-accent)] pl-5 py-2"
+          className="border-l-2 border-[var(--color-accent)] pl-5 py-2.5"
         >
           <blockquote className="text-[16px] leading-relaxed text-[var(--color-ink)]">
             “{q.quote}”

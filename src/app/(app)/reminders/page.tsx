@@ -32,7 +32,7 @@ export default async function RemindersPage() {
         <div className="mt-3">
           <a
             href="/api/cron/daily-digest"
-            className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink-2)] hover:bg-[var(--color-paper-2)]"
+            className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink-2)] hover:bg-[var(--color-paper-2)]"
           >
             Trigger cron now
           </a>

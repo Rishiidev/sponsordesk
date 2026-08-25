@@ -33,3 +33,6 @@ next-env.d.ts
 public/sw.js
 public/sw.js.map
 public/swe-worker-*.js
+
+# Phase 10 mobile verification screenshots
+screenshots/

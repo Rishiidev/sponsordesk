@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/lib/auth/local";
 import { getDeals, getBrands } from "@/lib/db/local";
 import { getRemindersForUser } from "@/lib/reminders/detect";
+import { PullToRefreshWrapper } from "@/components/pull-to-refresh-wrapper";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +31,8 @@ export default async function AppHome() {
   const overdueCount = reminders.overdueFollowUps.length + reminders.dueSoonDeliverables.length;
 
   return (
-    <div className="space-y-8">
+    <PullToRefreshWrapper>
+      <div className="space-y-8">
       <header className="flex items-end justify-between gap-4">
         <div>
           <h1 className="text-[26px] font-semibold tracking-tight text-[var(--color-ink)]">
@@ -42,7 +44,7 @@ export default async function AppHome() {
         </div>
         <a
           href="/pipeline"
-          className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+          className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-3 text-[13px] font-medium text-white hover:opacity-90"
         >
           Open pipeline
           <span aria-hidden>→</span>
@@ -142,7 +144,7 @@ export default async function AppHome() {
           </p>
           <a
             href="/brands/new"
-            className="mt-5 inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:opacity-90"
+            className="mt-5 inline-flex min-h-[44px] h-11 touch-manipulation items-center rounded-[6px] bg-[var(--color-ink)] px-4 text-[13px] font-medium text-white hover:opacity-90"
           >
             Create your first brand
           </a>
@@ -169,7 +171,8 @@ export default async function AppHome() {
           </ul>
         </section>
       )}
-    </div>
+      </div>
+    </PullToRefreshWrapper>
   );
 }
 

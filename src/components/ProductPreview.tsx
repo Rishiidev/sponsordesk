@@ -23,7 +23,7 @@ export function ProductPreview() {
       className="overflow-hidden rounded-[var(--radius-soft)] border border-[var(--color-line)] bg-white shadow-[0_1px_0_rgba(0,0,0,0.02)]"
     >
       {/* App chrome */}
-      <div className="flex items-center justify-between border-b border-[var(--color-line)] bg-[var(--color-paper-2)] px-4 py-2.5">
+      <div className="flex items-center justify-between border-b border-[var(--color-line)] bg-[var(--color-paper-2)] px-4 py-2.5.5">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
           <span className="h-2 w-2 rounded-full bg-[#febc2e]" />

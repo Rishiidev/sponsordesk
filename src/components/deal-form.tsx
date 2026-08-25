@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createDealAction, getBrandsForUser } from "@/lib/actions/deals";
+import { success as hapticSuccess, tap as hapticTap } from "@/lib/haptics";
 
 export function DealForm({ initialData, isEditing, onCancel }: { initialData?: any; isEditing?: boolean; onCancel?: () => void }) {
   const [brands, setBrands] = useState<any[]>([]);
@@ -27,6 +28,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    hapticTap();
     setLoading(true);
     setError(null);
     setLimitHit(false);
@@ -49,6 +51,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
         });
         const data = await result.json();
         if (data.success) {
+          hapticSuccess();
           router.refresh();
         } else {
           setError(data.error || "Failed to update deal");
@@ -56,6 +59,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
       } else {
         const result = await createDealAction(formData);
         if (result.success && result.deal) {
+          hapticSuccess();
           router.push(`/deals/${result.deal.id}`);
         } else if ((result as any).code === "limit_hit") {
           setError(result.error || "Free tier deal limit reached.");
@@ -72,7 +76,7 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5 pb-24 md:pb-5">
       <div>
         <label htmlFor="brandId" className="mb-2 block text-[13px] font-medium text-[var(--color-ink)]">
           Brand <span className="text-[var(--color-accent)]">*</span>
@@ -207,36 +211,40 @@ export function DealForm({ initialData, isEditing, onCancel }: { initialData?: a
       </div>
       {error && (
         <div className="space-y-3">
-          <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2">
+          <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2.5">
             {error}
           </p>
           {limitHit && (
             <a
               href="/settings/billing"
-              className="inline-flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-ink)] px-3 text-[13px] font-medium text-white hover:opacity-90"
+              className="inline-flex min-h-[44px] h-11 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-ink)] px-3 text-[13px] font-medium text-white hover:opacity-90"
             >
               See Pro pricing →
             </a>
           )}
         </div>
       )}
-      <div className="flex items-center gap-3">
-        <button
-          type="submit"
-          disabled={loading}
-          className="flex h-9 items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
-        >
-          {loading ? "Saving..." : isEditing ? "Save changes" : "Create deal"}
-        </button>
-        {onCancel && (
+      <div className="sticky bottom-0 -mx-6 mt-6 border-t border-[var(--color-line)] bg-gradient-to-t from-[var(--color-paper)] via-[var(--color-paper)] to-transparent pt-6 md:static md:mx-0 md:border-0 md:bg-none md:pt-0"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      >
+        <div className="flex items-center gap-3 px-6 md:px-0">
           <button
-            type="button"
-            onClick={onCancel}
-            className="inline-flex h-9 items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-3 text-[13px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
+            type="submit"
+            disabled={loading}
+            className="inline-flex min-h-[44px] h-12 touch-manipulation items-center gap-2 rounded-[6px] bg-[var(--color-accent)] px-5 text-[14px] font-medium text-white hover:opacity-90 disabled:opacity-50"
           >
-            Cancel
+            {loading ? "Saving..." : isEditing ? "Save changes" : "Create deal"}
           </button>
-        )}
+          {onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="inline-flex min-h-[44px] h-12 touch-manipulation items-center gap-2 rounded-[6px] border border-[var(--color-line)] bg-white px-4 text-[14px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-2)]"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
       </div>
     </form>
   );

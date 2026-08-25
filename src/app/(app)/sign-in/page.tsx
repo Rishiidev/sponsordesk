@@ -65,14 +65,14 @@ export default function SignInPage() {
             />
           </div>
           {error && (
-            <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2">
+            <p className="text-[13px] text-[var(--color-ink-2)] bg-[var(--color-accent-soft)] rounded-[6px] px-3 py-2.5">
               {error}
             </p>
           )}
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex h-9 items-center justify-center rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
+            className="w-full flex min-h-[44px] h-11 touch-manipulation items-center justify-center rounded-[6px] bg-[var(--color-accent)] px-4 text-[13px] font-medium text-white hover:opacity-90 disabled:opacity-50"
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
