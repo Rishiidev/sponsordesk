@@ -83,12 +83,19 @@ export function WaitlistForm() {
           />
           <div>
             <h3 className="text-lg font-medium text-[var(--color-ink)]">
-              You&apos;re on the list.
+              You&apos;re on the list — and it&apos;s live.
             </h3>
             <p className="mt-1 text-[15px] leading-relaxed text-[var(--color-ink-2)]">
-              I&apos;ll email you when seats open. You&apos;ll be among the first
-              to try SponsorDesk and lock in founder pricing.
+              SponsorDesk is already up and running. Create your account now
+              to lock in $9/mo founder pricing.
             </p>
+            <a
+              href="https://sponsordesk-app-v2.vercel.app/sign-up"
+              className="mt-4 inline-flex h-10 items-center justify-center gap-1.5 rounded-[var(--radius-tight)] bg-[var(--color-ink)] px-4 text-[14px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
+            >
+              Create your account
+              <span aria-hidden>→</span>
+            </a>
           </div>
         </div>
       </motion.div>

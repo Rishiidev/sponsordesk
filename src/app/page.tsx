@@ -35,6 +35,12 @@ export default function HomePage() {
             Pricing
           </a>
           <a
+            href="https://sponsordesk-app-v2.vercel.app/sign-in"
+            className="hidden text-[14px] text-[var(--color-ink-2)] hover:text-[var(--color-ink)] md:inline"
+          >
+            Sign in
+          </a>
+          <a
             href="#waitlist"
             className="inline-flex h-9 items-center rounded-[6px] bg-[var(--color-ink)] px-3.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent)] transition-colors"
           >
@@ -183,8 +189,8 @@ export default function HomePage() {
             Stop losing deals to a spreadsheet you forgot to open.
           </h2>
           <p className="mx-auto mt-4 max-w-[55ch] text-[15.5px] leading-relaxed text-white/70">
-            Join the waitlist. Lock in $9/mo founder pricing. Get the first
-            look when seats open in 6 to 10 weeks.
+            SponsorDesk is live today. Join now and lock in $9/mo founder
+            pricing before the first 200 seats are gone.
           </p>
           <a
             href="#waitlist"

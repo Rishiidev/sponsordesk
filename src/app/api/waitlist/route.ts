@@ -111,7 +111,9 @@ function welcomeHtml(email: string): string {
       Thanks for signing up for SponsorDesk, a CRM built for individual creators managing brand deals.
     </p>
     <p style="font-size: 15px; line-height: 1.6; margin: 0 0 16px;">
-      I'm building this solo in public. You'll hear from me when seats open (roughly 6 to 10 weeks) with founder pricing locked in for life.
+      I'm building this solo in public — and it's live right now. Head to
+      <a href="https://sponsordesk-app-v2.vercel.app/sign-up" style="color: #ea580c;">sponsordesk-app-v2.vercel.app</a>
+      to create your account. Founder pricing is locked in for life.
     </p>
     <p style="font-size: 15px; line-height: 1.6; margin: 0 0 24px;">
       In the meantime, if you want to shape what gets built first, reply to this email with the one thing that makes you lose the most sleep about brand deals.

@@ -14,7 +14,7 @@ const FAQS = [
   },
   {
     q: "When will it launch?",
-    a: "Waitlist members get founder pricing and access in roughly 6 to 10 weeks. I'm building this solo, so I'd rather ship something good than ship something fast.",
+    a: "It's live now. Join through the form above and you'll get a direct link to create your account and lock in $9/mo founder pricing immediately, no wait.",
   },
   {
     q: "Will it integrate with YouTube / Instagram / TikTok analytics?",
