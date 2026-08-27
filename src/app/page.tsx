@@ -5,6 +5,7 @@ import { ProductPreview } from "@/components/ProductPreview";
 import { QuoteWall } from "@/components/QuoteWall";
 import { FAQ } from "@/components/FAQ";
 import { ArrowRight, CircleCheck } from "lucide-react";
+import Image from "next/image";
 
 const SIGN_UP = "https://sponsordesk-app-v2.vercel.app/sign-up";
 const SIGN_IN = "https://sponsordesk-app-v2.vercel.app/sign-in";
@@ -16,14 +17,8 @@ const mono: React.CSSProperties = { fontFamily: "var(--font-mono)" };
 function Logo() {
   return (
     <a href="/" className="flex items-center gap-2.5">
-      <span
-        aria-hidden
-        className="inline-flex h-7 w-7 items-center justify-center text-[14px]"
-        style={{ ...display, borderRadius: "var(--radius-sm)", background: "var(--ink-900)", color: "var(--cobalt-400)", fontWeight: "var(--weight-bold)", lineHeight: 1 }}
-      >
-        S
-      </span>
-      <span className="text-[15px]" style={{ ...display, fontWeight: "var(--weight-bold)", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "var(--tracking-tight)" }}>
+      <Image src="/logo-mark.png" alt="" width={19} height={22} priority style={{ height: 22, width: "auto" }} />
+      <span className="text-[16px]" style={{ ...display, fontWeight: "var(--weight-extrabold)", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "var(--tracking-tighter)" }}>
         SponsorDesk
       </span>
     </a>
@@ -336,13 +331,7 @@ export default function HomePage() {
         style={{ borderTop: "1px solid var(--border-subtle)", ...sans, color: "var(--text-muted)" }}
       >
         <div className="flex items-center gap-2">
-          <span
-            aria-hidden
-            className="inline-flex h-5 w-5 items-center justify-center text-[10px]"
-            style={{ borderRadius: "var(--radius-xs)", background: "var(--ink-900)", color: "var(--cobalt-400)", ...display, fontWeight: "var(--weight-bold)", lineHeight: 1 }}
-          >
-            S
-          </span>
+          <Image src="/logo-mark.png" alt="" width={14} height={16} style={{ height: 16, width: "auto" }} />
           <span>SponsorDesk</span>
           <span aria-hidden>·</span>
           <span>Built solo in public</span>
