@@ -3,6 +3,7 @@ import { FeatureGrid } from "@/components/FeatureGrid";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { ProductPreview } from "@/components/ProductPreview";
 import { QuoteWall } from "@/components/QuoteWall";
+import { TestimonialsWall } from "@/components/ui/testimonial-v2";
 import { FAQ } from "@/components/FAQ";
 import { Pricing } from "@/components/Pricing";
 import { ShaderBackground } from "@/components/ShaderBackground";
@@ -212,6 +213,17 @@ export default function HomePage() {
         <QuoteWall />
       </section>
 
+      {/* TESTIMONIALS */}
+      <section className="mt-24 md:mt-32">
+        <div className="mb-2 max-w-[60ch]">
+          <SectionHeading>What creators are saying.</SectionHeading>
+          <p className="mt-3 text-[16px]" style={{ ...sans, color: "var(--text-secondary)" }}>
+            Early creators running their sponsorships through SponsorDesk today.
+          </p>
+        </div>
+        <TestimonialsWall />
+      </section>
+
       {/* FEATURES */}
       <section id="how" className="mt-24 md:mt-32">
         <div className="mb-10 max-w-[60ch]">
@@ -296,33 +308,48 @@ export default function HomePage() {
 
       {/* FOOTER, shader-backed */}
       <footer
-        className="relative mt-20 pt-8"
+        className="relative mt-24 pt-16 pb-10 md:mt-32 md:pt-20"
         style={{ borderTop: "1px solid var(--border-subtle)" }}
       >
-        {/* Full-bleed to viewport width — footer itself stays in the max-w column */}
+        {/* Full-bleed to viewport width, tall enough for the gradient to actually read as a gradient
+            (not a squished sliver), faded top+bottom so it blends instead of hard-cutting at the edges */}
         <div
           aria-hidden
           className="pointer-events-none absolute overflow-hidden"
-          style={{ zIndex: 0, opacity: 0.14, top: 0, bottom: 0, left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", width: "100vw" }}
+          style={{
+            zIndex: 0,
+            opacity: 0.16,
+            top: 0,
+            height: 280,
+            left: "50%",
+            right: "50%",
+            marginLeft: "-50vw",
+            marginRight: "-50vw",
+            width: "100vw",
+            maskImage: "linear-gradient(to bottom, transparent, black 35%, black 65%, transparent)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent, black 35%, black 65%, transparent)",
+          }}
         >
           <ShaderBackground className="h-full w-full" />
         </div>
-        <div
-          className="relative flex flex-col gap-3 text-[13px] md:flex-row md:items-center md:justify-between"
-          style={{ zIndex: 1, ...sans, color: "var(--text-muted)" }}
-        >
-          <div className="flex items-center gap-2">
-            <Image src="/logo-mark.png" alt="" width={14} height={16} style={{ height: 16, width: "auto" }} />
-            <span>SponsorDesk</span>
-            <span aria-hidden>·</span>
-            <span>Built solo in public</span>
+        <div className="relative flex flex-col gap-10 md:flex-row md:items-start md:justify-between" style={{ zIndex: 1 }}>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              <Image src="/logo-mark.png" alt="" width={16} height={18} style={{ height: 18, width: "auto" }} />
+              <span className="text-[15px]" style={{ ...display, fontWeight: "var(--weight-bold)", color: "var(--text-primary)", letterSpacing: "var(--tracking-tight)" }}>
+                SponsorDesk
+              </span>
+            </div>
+            <p className="text-[13px]" style={{ ...sans, color: "var(--text-muted)" }}>
+              Built solo in public.
+            </p>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="mailto:hello@sponsordesk.io" style={{ color: "var(--text-muted)" }}>
+
+          <div className="flex flex-col gap-2 md:items-end">
+            <a href="mailto:hello@sponsordesk.io" className="text-[13px]" style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}>
               hello@sponsordesk.io
             </a>
-            <span aria-hidden>·</span>
-            <span style={mono}>© 2026</span>
+            <span className="text-[12px]" style={{ ...mono, color: "var(--text-muted)" }}>© 2026 SponsorDesk</span>
           </div>
         </div>
       </footer>
