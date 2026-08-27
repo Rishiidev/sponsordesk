@@ -166,17 +166,17 @@ export default function HomePage() {
                 className="text-[11px]"
                 style={{ ...mono, fontWeight: "var(--weight-semibold)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase", color: "var(--cobalt-600)" }}
               >
-                Founder pricing
+                Get started
               </span>
               <div className="mt-2.5 flex items-baseline gap-1.5">
                 <span className="text-[44px]" style={{ ...display, fontWeight: "var(--weight-extrabold)", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "var(--tracking-tighter)" }}>
-                  $9
+                  $0
                 </span>
-                <span className="text-[13px]" style={{ ...sans, color: "var(--text-muted)" }}>/ month, forever</span>
+                <span className="text-[13px]" style={{ ...sans, color: "var(--text-muted)" }}>forever, free tier</span>
               </div>
 
               <div className="mt-5 flex flex-col gap-2.5">
-                {["Unlimited pipeline tracking", "Deliverable + follow-up reminders", "Locked in for life — first 200 only"].map((t) => (
+                {["Up to 3 active deals", "Pipeline board", "Manual reminders"].map((t) => (
                   <div key={t} className="flex items-center gap-2.5">
                     <CircleCheck size={16} style={{ color: "var(--cobalt-500)", flexShrink: 0 }} />
                     <span className="text-[13px]" style={{ ...sans, color: "var(--text-secondary)" }}>{t}</span>
@@ -186,11 +186,12 @@ export default function HomePage() {
 
               <div className="mt-6">
                 <PrimaryButton href={SIGN_UP} size="lg" fullWidth>
-                  Create your account
+                  Start for free
                 </PrimaryButton>
               </div>
               <p className="mt-3 text-center text-[12.5px]" style={{ ...sans, color: "var(--text-muted)" }}>
-                Already have an account?{" "}
+                <a href="#pricing" style={{ color: "var(--cobalt-600)" }}>More deals? See founder pricing</a>
+                {" "}·{" "}
                 <a href={SIGN_IN} style={{ color: "var(--cobalt-600)" }}>
                   Sign in
                 </a>
