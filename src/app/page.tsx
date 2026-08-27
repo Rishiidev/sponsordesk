@@ -79,8 +79,9 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-[1180px] px-5 pb-28 md:px-8">
-      {/* NAV + HERO, shader-backed */}
-      <div style={{ position: "relative" }}>
+      {/* NAV + HERO, shader-backed — breaks out to full viewport width so the
+          gradient reaches both edges, independent of main's max-w column */}
+      <div style={{ position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", width: "100vw", overflow: "hidden" }}>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -93,7 +94,7 @@ export default function HomePage() {
         >
           <ShaderBackground className="h-full w-full" />
         </div>
-        <div style={{ position: "relative", zIndex: 1 }}>
+        <div className="mx-auto max-w-[1180px] px-5 md:px-8" style={{ position: "relative", zIndex: 1 }}>
       <nav className="flex h-20 items-center justify-between">
         <Logo />
         <div className="flex items-center gap-4">
@@ -294,13 +295,14 @@ export default function HomePage() {
 
       {/* FOOTER, shader-backed */}
       <footer
-        className="relative mt-20 overflow-hidden pt-8"
+        className="relative mt-20 pt-8"
         style={{ borderTop: "1px solid var(--border-subtle)" }}
       >
+        {/* Full-bleed to viewport width — footer itself stays in the max-w column */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{ zIndex: 0, opacity: 0.14 }}
+          className="pointer-events-none absolute overflow-hidden"
+          style={{ zIndex: 0, opacity: 0.14, top: 0, bottom: 0, left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", width: "100vw" }}
         >
           <ShaderBackground className="h-full w-full" />
         </div>
