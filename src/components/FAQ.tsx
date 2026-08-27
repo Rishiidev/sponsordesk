@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "How much will it cost?",
-    a: "The first 200 creators lock in $9/mo founder pricing for life. After that, expect $19 to $29/mo.",
+    a: "Free to start, up to 3 active deals. The first 200 creators can lock in $9/mo founder pricing for life beyond that. After that, expect $19 to $29/mo.",
   },
 ];
 

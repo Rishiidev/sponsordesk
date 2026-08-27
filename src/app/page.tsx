@@ -4,6 +4,7 @@ import { ComparisonTable } from "@/components/ComparisonTable";
 import { ProductPreview } from "@/components/ProductPreview";
 import { QuoteWall } from "@/components/QuoteWall";
 import { FAQ } from "@/components/FAQ";
+import { Pricing } from "@/components/Pricing";
 import { ArrowRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
 
@@ -217,63 +218,12 @@ export default function HomePage() {
       {/* PRICING */}
       <section id="pricing" className="mt-24 md:mt-32">
         <div className="mb-10 max-w-[60ch]">
-          <SectionHeading>Two plans. One is honest about what it costs to build this.</SectionHeading>
+          <SectionHeading>Three plans. Start free, upgrade when it's worth it.</SectionHeading>
           <p className="mt-3 text-[16px]" style={{ ...sans, color: "var(--text-secondary)" }}>
             The first 200 creators lock in founder pricing for life.
           </p>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          {/* Founder */}
-          <div
-            className="p-7"
-            style={{ borderRadius: "var(--radius-lg)", border: "1.5px solid var(--cobalt-500)", background: "var(--surface-card)", boxShadow: "var(--shadow-sm)" }}
-          >
-            <div className="flex items-baseline justify-between">
-              <h3 className="text-[18px]" style={{ ...sans, fontWeight: "var(--weight-semibold)", color: "var(--text-primary)" }}>Founder</h3>
-              <span className="text-[11px]" style={{ ...mono, fontWeight: "var(--weight-semibold)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase", color: "var(--cobalt-600)" }}>
-                First 200
-              </span>
-            </div>
-            <div className="mt-4 flex items-baseline gap-1.5">
-              <span className="text-[44px]" style={{ ...display, fontWeight: "var(--weight-extrabold)", lineHeight: 1, color: "var(--text-primary)" }}>$9</span>
-              <span className="text-[13px]" style={{ ...sans, color: "var(--text-muted)" }}>/ month, forever</span>
-            </div>
-            <p className="mt-3 text-[13px]" style={{ ...sans, color: "var(--text-secondary)" }}>
-              For creators with up to 25 active deals at a time. Everything you see above, plus all future updates.
-            </p>
-            <div className="mt-6">
-              <PrimaryButton href={SIGN_UP} fullWidth>
-                Create your account
-              </PrimaryButton>
-            </div>
-          </div>
-          {/* Pro */}
-          <div
-            className="p-7"
-            style={{ borderRadius: "var(--radius-lg)", border: "1px solid var(--border-subtle)", background: "var(--surface-card)" }}
-          >
-            <div className="flex items-baseline justify-between">
-              <h3 className="text-[18px]" style={{ ...sans, fontWeight: "var(--weight-semibold)", color: "var(--text-primary)" }}>Pro</h3>
-              <span className="text-[11px]" style={{ ...mono, fontWeight: "var(--weight-semibold)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase", color: "var(--text-muted)" }}>
-                After launch
-              </span>
-            </div>
-            <div className="mt-4 flex items-baseline gap-1.5">
-              <span className="text-[44px]" style={{ ...display, fontWeight: "var(--weight-extrabold)", lineHeight: 1, color: "var(--text-primary)" }}>$29</span>
-              <span className="text-[13px]" style={{ ...sans, color: "var(--text-muted)" }}>/ month</span>
-            </div>
-            <p className="mt-3 text-[13px]" style={{ ...sans, color: "var(--text-secondary)" }}>
-              Unlimited deals, Stripe payouts, AI follow-up drafts, and priority support. Everything else is the same.
-            </p>
-            <a
-              href="#updates"
-              className="mt-6 inline-flex h-10 w-full items-center justify-center text-[14px] transition-colors"
-              style={{ borderRadius: "var(--radius-sm)", border: "1px solid var(--border-subtle)", color: "var(--text-primary)", ...sans, fontWeight: "var(--weight-semibold)" }}
-            >
-              Notify me when Pro ships
-            </a>
-          </div>
-        </div>
+        <Pricing />
       </section>
 
       {/* FAQ */}
