@@ -1,4 +1,4 @@
-import { Check, X } from "@phosphor-icons/react/dist/ssr";
+import { Check, X } from "lucide-react";
 
 type Row = {
   feature: string;
@@ -23,60 +23,52 @@ const ROWS: Row[] = [
 
 function Cell({ value }: { value: boolean | string }) {
   if (value === true) {
-    return <Check size={18} weight="bold" className="text-[var(--color-accent)]" />;
+    return <Check size={17} strokeWidth={2.5} style={{ color: "var(--cobalt-500)" }} />;
   }
   if (value === false) {
-    return <X size={18} weight="bold" className="text-[var(--color-ink-3)] opacity-50" />;
+    return <X size={17} strokeWidth={2.5} style={{ color: "var(--text-muted)", opacity: 0.5 }} />;
   }
-  return <span className="text-[13px] text-[var(--color-ink-2)]">{value}</span>;
+  return <span style={{ font: "var(--type-data)", color: "var(--text-secondary)" }}>{value}</span>;
 }
 
 export function ComparisonTable() {
   return (
-    <div className="overflow-hidden rounded-[var(--radius-soft)] border border-[var(--color-line)] bg-white">
-      {/* Mobile: card list. Desktop: table */}
+    <div
+      className="overflow-hidden"
+      style={{ borderRadius: "var(--radius-lg)", border: "1px solid var(--border-subtle)", background: "var(--surface-card)" }}
+    >
+      {/* Desktop table */}
       <div className="hidden md:block">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-[var(--color-line)]">
-              <th className="px-5 py-4 text-left text-[12px] font-medium uppercase tracking-wider text-[var(--color-ink-3)]">
+            <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+              <th className="px-5 py-4 text-left" style={{ font: "var(--type-eyebrow)", color: "var(--text-muted)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase" }}>
                 Feature
               </th>
-              <th className="px-5 py-4 text-left text-[13px] font-semibold text-[var(--color-ink)]">
+              <th className="px-5 py-4 text-left" style={{ font: "var(--weight-bold) var(--text-13)/1 var(--font-sans)", color: "var(--cobalt-600)" }}>
                 SponsorDesk
               </th>
-              <th className="px-5 py-4 text-left text-[13px] font-medium text-[var(--color-ink-3)]">
+              <th className="px-5 py-4 text-left" style={{ font: "var(--weight-medium) var(--text-13)/1 var(--font-sans)", color: "var(--text-muted)" }}>
                 July
               </th>
-              <th className="px-5 py-4 text-left text-[13px] font-medium text-[var(--color-ink-3)]">
+              <th className="px-5 py-4 text-left" style={{ font: "var(--weight-medium) var(--text-13)/1 var(--font-sans)", color: "var(--text-muted)" }}>
                 Notion template
               </th>
-              <th className="px-5 py-4 text-left text-[13px] font-medium text-[var(--color-ink-3)]">
+              <th className="px-5 py-4 text-left" style={{ font: "var(--weight-medium) var(--text-13)/1 var(--font-sans)", color: "var(--text-muted)" }}>
                 GRIN
               </th>
             </tr>
           </thead>
           <tbody>
             {ROWS.map((r, i) => (
-              <tr
-                key={r.feature}
-                className={i < ROWS.length - 1 ? "border-b border-[var(--color-line)]/60" : ""}
-              >
-                <td className="px-5 py-3.5 text-[14px] text-[var(--color-ink-2)]">
+              <tr key={r.feature} style={i < ROWS.length - 1 ? { borderBottom: "1px solid var(--border-subtle)" } : undefined}>
+                <td className="px-5 py-3.5" style={{ font: "var(--type-body-sm)", color: "var(--text-secondary)" }}>
                   {r.feature}
                 </td>
-                <td className="px-5 py-3.5">
-                  <Cell value={r.ours} />
-                </td>
-                <td className="px-5 py-3.5">
-                  <Cell value={r.july} />
-                </td>
-                <td className="px-5 py-3.5">
-                  <Cell value={r.notion} />
-                </td>
-                <td className="px-5 py-3.5">
-                  <Cell value={r.grin} />
-                </td>
+                <td className="px-5 py-3.5"><Cell value={r.ours} /></td>
+                <td className="px-5 py-3.5"><Cell value={r.july} /></td>
+                <td className="px-5 py-3.5"><Cell value={r.notion} /></td>
+                <td className="px-5 py-3.5"><Cell value={r.grin} /></td>
               </tr>
             ))}
           </tbody>
@@ -88,16 +80,14 @@ export function ComparisonTable() {
         {ROWS.map((r, i) => (
           <div
             key={r.feature}
-            className={
-              "flex items-center justify-between px-5 py-3 " +
-              (i < ROWS.length - 1 ? "border-b border-[var(--color-line)]/60" : "")
-            }
+            className="flex items-center justify-between px-5 py-3"
+            style={i < ROWS.length - 1 ? { borderBottom: "1px solid var(--border-subtle)" } : undefined}
           >
-            <span className="text-[14px] text-[var(--color-ink-2)]">{r.feature}</span>
+            <span style={{ font: "var(--type-body-sm)", color: "var(--text-secondary)" }}>{r.feature}</span>
             <Cell value={r.ours} />
           </div>
         ))}
-        <div className="border-t border-[var(--color-line)] bg-[var(--color-paper-2)] px-5 py-3 text-[12px] text-[var(--color-ink-3)]">
+        <div className="px-5 py-3" style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--surface-sunken)", font: "var(--type-data)", color: "var(--text-muted)" }}>
           SponsorDesk column shown. July / Notion / GRIN comparison on desktop.
         </div>
       </div>

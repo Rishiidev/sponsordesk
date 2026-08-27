@@ -1,0 +1,52 @@
+:root{
+  /* Ink — pulled from the monogram (#111113) */
+  --ink-900:#111113;--ink-800:#1b1c21;--ink-700:#2e2f36;--ink-600:#4a4c56;
+  --ink-500:#6b6e79;--ink-400:#9498a3;--ink-300:#c3c6ce;--ink-200:#e1e3e8;
+  --ink-100:#eef0f3;--ink-50:#f7f7f9;--white:#ffffff;
+
+  /* Paper — warm neutral canvas */
+  --paper-100:#fdfcfb;--paper-200:#faf9f7;--paper-300:#f2f0eb;--paper-400:#e8e5dd;
+
+  /* Cobalt — primary accent */
+  --cobalt-800:#14228c;--cobalt-700:#1b2fb8;--cobalt-600:#2039e0;--cobalt-500:#2b4bff;
+  --cobalt-400:#6c81ff;--cobalt-300:#a7b4ff;--cobalt-200:#d3daff;--cobalt-100:#e9edff;
+
+  /* Semantic hues — deal pipeline states */
+  --green-600:#0b7f58;--green-500:#0e9f6e;--green-200:#bfe8d8;--green-100:#e3f6ee;
+  --amber-600:#b96c00;--amber-500:#e08700;--amber-200:#f7dfb0;--amber-100:#fdf2dd;
+  --red-600:#b62f20;--red-500:#dc3a28;--red-200:#f7cec8;--red-100:#fce8e4;
+  --pro-500:#7a3cf0;--pro-200:#ddd0fb;--pro-100:#f0e9fe;
+
+  /* ---- Semantic aliases ---- */
+  --surface-page:var(--paper-200);
+  --surface-card:var(--white);
+  --surface-sunken:var(--paper-300);
+  --surface-raised:var(--white);
+  --surface-inverse:var(--ink-900);
+  --surface-accent-soft:var(--cobalt-100);
+  --surface-hover:var(--ink-50);
+  --surface-selected:var(--cobalt-100);
+
+  --text-primary:var(--ink-900);
+  --text-secondary:var(--ink-600);
+  --text-muted:var(--ink-400);
+  --text-inverse:var(--white);
+  --text-accent:var(--cobalt-600);
+  --text-on-accent:var(--white);
+
+  --border-subtle:var(--ink-200);
+  --border-strong:var(--ink-300);
+  --border-inverse:rgba(255,255,255,.14);
+  --border-accent:var(--cobalt-500);
+
+  --brand:var(--cobalt-500);
+  --brand-hover:var(--cobalt-600);
+  --brand-press:var(--cobalt-700);
+  --focus-ring:var(--cobalt-300);
+
+  --status-live-fg:var(--green-600);--status-live-bg:var(--green-100);--status-live-bd:var(--green-200);
+  --status-due-fg:var(--amber-600);--status-due-bg:var(--amber-100);--status-due-bd:var(--amber-200);
+  --status-late-fg:var(--red-600);--status-late-bg:var(--red-100);--status-late-bd:var(--red-200);
+  --status-idle-fg:var(--ink-600);--status-idle-bg:var(--ink-100);--status-idle-bd:var(--ink-200);
+  --status-pro-fg:var(--pro-500);--status-pro-bg:var(--pro-100);--status-pro-bd:var(--pro-200);
+}

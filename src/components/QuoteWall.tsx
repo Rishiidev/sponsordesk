@@ -28,15 +28,16 @@ export function QuoteWall() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15, margin: "0px 0px -10% 0px" }}
           transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="border-l-2 border-[var(--color-accent)] pl-5 py-2"
+          className="py-2 pl-5"
+          style={{ borderLeft: "2px solid var(--cobalt-400)" }}
         >
-          <blockquote className="text-[16px] leading-relaxed text-[var(--color-ink)]">
-            “{q.quote}”
+          <blockquote style={{ font: "var(--type-body)", fontSize: 16, color: "var(--text-primary)", lineHeight: "var(--leading-relaxed)" }}>
+            &ldquo;{q.quote}&rdquo;
           </blockquote>
-          <figcaption className="mt-3 text-[13px] text-[var(--color-ink-3)]">
-            <span className="font-medium text-[var(--color-ink-2)]">{q.name}</span>
+          <figcaption className="mt-3" style={{ font: "var(--type-body-sm)", color: "var(--text-muted)" }}>
+            <span style={{ fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}>{q.name}</span>
             <span className="mx-2">·</span>
-            <span className="font-mono text-[12px]">{q.handle}</span>
+            <span style={{ font: "var(--type-data)" }}>{q.handle}</span>
           </figcaption>
         </motion.figure>
       ))}

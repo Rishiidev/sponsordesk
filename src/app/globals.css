@@ -1,22 +1,10 @@
 @import "tailwindcss";
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/elevation.css";
 
-@theme {
-  /* Single accent: deep ink + a single warm orange that reads as "energy / brand deal" without screaming "AI startup purple" */
-  --color-paper: #fafaf7;
-  --color-paper-2: #f3f2ee;
-  --color-ink: #18181b;
-  --color-ink-2: #3f3f46;
-  --color-ink-3: #71717a;
-  --color-line: #e7e5e4;
-  --color-accent: #ea580c;       /* deep orange — neutralized, not neon */
-  --color-accent-soft: #fff7ed;
-
-  --font-display: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
-
-  --radius-tight: 6px;
-  --radius-soft: 12px;
-}
+*,*::before,*::after{box-sizing:border-box}
 
 @layer base {
   html {
@@ -26,15 +14,15 @@
   }
 
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
-    font-family: var(--font-display);
-    font-feature-settings: "ss01", "cv11";
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font: var(--type-body);
   }
 
+  h1, h2, h3, h4, p { margin: 0; }
+
   ::selection {
-    background: var(--color-accent);
-    color: white;
+    background: var(--cobalt-200);
   }
 }
 
@@ -45,15 +33,18 @@
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.03;
   mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+@keyframes sd-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

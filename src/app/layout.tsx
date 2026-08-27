@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({
+const display = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--ds-font-display",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  weight: ["400", "500", "600"],
+  variable: "--ds-font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sponsordesk.io"),
-  title: "SponsorDesk - Track brand deals without losing your mind",
+  title: "SponsorDesk — Track brand deals without losing your mind",
   description:
     "A lightweight CRM for creators who actually close brand deals. Stop tracking sponsors in spreadsheets.",
   openGraph: {
@@ -39,7 +40,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${display.variable} ${mono.variable}`}>
       <body className="grain">{children}</body>
     </html>
   );

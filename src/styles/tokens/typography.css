@@ -1,0 +1,28 @@
+:root{
+  --font-display:var(--ds-font-display),system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-sans:var(--ds-font-display),system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:var(--ds-font-mono),ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+  --text-11:11px;--text-12:12px;--text-13:13px;--text-14:14px;--text-15:15px;
+  --text-16:16px;--text-18:18px;--text-20:20px;--text-24:24px;--text-30:30px;
+  --text-38:38px;--text-48:48px;--text-60:60px;--text-76:76px;
+
+  --weight-light:300;--weight-regular:400;--weight-medium:500;
+  --weight-semibold:600;--weight-bold:700;--weight-extrabold:800;
+
+  --leading-tight:1.05;--leading-snug:1.2;--leading-normal:1.45;--leading-relaxed:1.6;
+
+  --tracking-tighter:-0.03em;--tracking-tight:-0.015em;--tracking-normal:0;
+  --tracking-wide:0.02em;--tracking-caps:0.09em;
+
+  /* Composed roles */
+  --type-display:var(--weight-extrabold) var(--text-60)/var(--leading-tight) var(--font-display);
+  --type-h1:var(--weight-bold) var(--text-38)/var(--leading-snug) var(--font-display);
+  --type-h2:var(--weight-bold) var(--text-24)/var(--leading-snug) var(--font-display);
+  --type-h3:var(--weight-semibold) var(--text-18)/var(--leading-snug) var(--font-sans);
+  --type-body:var(--weight-regular) var(--text-15)/var(--leading-normal) var(--font-sans);
+  --type-body-sm:var(--weight-regular) var(--text-13)/var(--leading-normal) var(--font-sans);
+  --type-label:var(--weight-semibold) var(--text-13)/1.3 var(--font-sans);
+  --type-eyebrow:var(--weight-semibold) var(--text-11)/1.2 var(--font-mono);
+  --type-data:var(--weight-medium) var(--text-13)/1.3 var(--font-mono);
+}

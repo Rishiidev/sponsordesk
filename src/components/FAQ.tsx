@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducer } from "react";
-import { Plus, Minus } from "@phosphor-icons/react";
+import { ChevronDown } from "lucide-react";
 
 const FAQS = [
   {
@@ -14,11 +14,11 @@ const FAQS = [
   },
   {
     q: "When will it launch?",
-    a: "It's live now. Join through the form above and you'll get a direct link to create your account and lock in $9/mo founder pricing immediately, no wait.",
+    a: "It's live now. Create your account above and start tracking deals immediately — no wait, no invite needed.",
   },
   {
     q: "Will it integrate with YouTube / Instagram / TikTok analytics?",
-    a: "Not on day one. Day one is the deal pipeline. Analytics integrations land after, based on what waitlist members ask for. If you want a specific one, tell me in the form.",
+    a: "Not on day one. Day one is the deal pipeline. Analytics integrations land after, based on what creators ask for. If you want a specific one, tell us in the updates form below.",
   },
   {
     q: "What about my existing spreadsheet?",
@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "How much will it cost?",
-    a: "Waitlist members lock in $9/mo founder pricing for life. After public launch, expect $19 to $29/mo.",
+    a: "The first 200 creators lock in $9/mo founder pricing for life. After that, expect $19 to $29/mo.",
   },
 ];
 
@@ -37,36 +37,30 @@ export function FAQ() {
   );
 
   return (
-    <div className="border-t border-[var(--color-line)]">
+    <div style={{ borderTop: "1px solid var(--border-subtle)" }}>
       {FAQS.map((f, i) => {
         const open = openIdx === i;
         return (
-          <div key={i} className="border-b border-[var(--color-line)]">
+          <div key={i} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
             <button
               onClick={() => toggle(i)}
               aria-expanded={open}
-              className="flex w-full items-center justify-between gap-4 py-5 text-left outline-none focus-visible:text-[var(--color-accent)]"
+              className="flex w-full items-center justify-between gap-4 py-5 text-left outline-none"
             >
-              <span className="text-[15.5px] font-medium text-[var(--color-ink)]">
-                {f.q}
-              </span>
+              <span style={{ font: "var(--type-h3)", fontSize: 15.5, color: "var(--text-primary)" }}>{f.q}</span>
               <span
-                className="shrink-0 text-[var(--color-ink-3)] transition-transform"
-                aria-hidden
-                style={{ transform: open ? "rotate(0deg)" : "rotate(0deg)" }}
+                className="shrink-0 transition-transform"
+                style={{ color: "var(--text-muted)", transform: open ? "rotate(180deg)" : "none" }}
               >
-                {open ? <Minus size={18} weight="bold" /> : <Plus size={18} weight="bold" />}
+                <ChevronDown size={18} strokeWidth={2} />
               </span>
             </button>
             <div
               className="grid transition-all duration-300 ease-out"
-              style={{
-                gridTemplateRows: open ? "1fr" : "0fr",
-                opacity: open ? 1 : 0,
-              }}
+              style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
             >
               <div className="overflow-hidden">
-                <p className="pb-5 pr-8 text-[14.5px] leading-relaxed text-[var(--color-ink-2)]">
+                <p className="pb-5 pr-8" style={{ font: "var(--type-body-sm)", fontSize: 14.5, color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)" }}>
                   {f.a}
                 </p>
               </div>

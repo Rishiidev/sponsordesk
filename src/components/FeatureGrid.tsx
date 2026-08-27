@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { Receipt, FileText, Bell, CheckSquare, ChatCircle, Kanban } from "@phosphor-icons/react/dist/ssr";
+import { Kanban, FileText, Bell, CircleCheck, Banknote, History, type LucideIcon } from "lucide-react";
 
-const FEATURES = [
+const FEATURES: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Kanban,
     title: "Pipeline at a glance",
@@ -20,17 +20,17 @@ const FEATURES = [
     body: "Auto-reminders 3, 7, and 14 days after a brand goes quiet. The single biggest source of lost revenue on the list.",
   },
   {
-    icon: CheckSquare,
+    icon: CircleCheck,
     title: "Deliverable checklists",
     body: "Track every deliverable you owe per deal: drafts, posts, usage-rights windows, payment milestones. Check them off as you ship.",
   },
   {
-    icon: Receipt,
+    icon: Banknote,
     title: "Invoice + get paid",
     body: "Generate an invoice from a closed deal. Stripe payouts. Net-15 reminders. No more chasing payment for work you already shipped.",
   },
   {
-    icon: ChatCircle,
+    icon: History,
     title: "Thread history per brand",
     body: "Every email, DM, and call note logged against the deal. Walk into a 6-month-later negotiation with full context.",
   },
@@ -39,21 +39,41 @@ const FEATURES = [
 export function FeatureGrid() {
   const reduce = useReducedMotion();
   return (
-    <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-soft)] border border-[var(--color-line)] bg-[var(--color-line)] md:grid-cols-2 lg:grid-cols-3">
+    <div
+      className="grid grid-cols-1 gap-px overflow-hidden md:grid-cols-2 lg:grid-cols-3"
+      style={{
+        borderRadius: "var(--radius-lg)",
+        border: "1px solid var(--border-subtle)",
+        background: "var(--border-subtle)",
+      }}
+    >
       {FEATURES.map((f, i) => (
         <motion.div
           key={f.title}
-          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 16 }}
+          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15, margin: "0px 0px -10% 0px" }}
           transition={{ duration: 0.5, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white p-6 md:p-8"
+          className="p-6 md:p-7"
+          style={{ background: "var(--surface-card)" }}
         >
-          <f.icon size={26} weight="duotone" className="text-[var(--color-accent)]" />
-          <h3 className="mt-4 text-[16px] font-medium text-[var(--color-ink)]">
+          <span
+            className="inline-flex h-10 w-10 items-center justify-center"
+            style={{
+              borderRadius: "var(--radius-md)",
+              background: "var(--cobalt-100)",
+              color: "var(--cobalt-600)",
+            }}
+          >
+            <f.icon size={19} strokeWidth={2} />
+          </span>
+          <h3
+            className="mt-4"
+            style={{ font: "var(--type-h3)", color: "var(--text-primary)", letterSpacing: "var(--tracking-tight)" }}
+          >
             {f.title}
           </h3>
-          <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--color-ink-2)]">
+          <p className="mt-2" style={{ font: "var(--type-body-sm)", color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)" }}>
             {f.body}
           </p>
         </motion.div>

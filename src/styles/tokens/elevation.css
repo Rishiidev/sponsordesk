@@ -1,0 +1,11 @@
+:root{
+  --shadow-none:none;
+  --shadow-xs:0 1px 1px rgba(17,17,19,.04);
+  --shadow-sm:0 1px 2px rgba(17,17,19,.06),0 1px 1px rgba(17,17,19,.03);
+  --shadow-md:0 4px 12px rgba(17,17,19,.07),0 1px 2px rgba(17,17,19,.04);
+  --shadow-lg:0 14px 34px rgba(17,17,19,.10),0 2px 6px rgba(17,17,19,.05);
+  --shadow-inset-top:inset 0 1px 0 rgba(255,255,255,.10);
+  --shadow-accent:0 4px 14px rgba(43,75,255,.24);
+  --ring-focus:0 0 0 3px var(--cobalt-200);
+  --ring-focus-inverse:0 0 0 3px rgba(43,75,255,.45);
+}

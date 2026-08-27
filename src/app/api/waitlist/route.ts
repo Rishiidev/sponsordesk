@@ -3,22 +3,8 @@ import { Resend } from "resend";
 
 type Payload = {
   email?: string;
-  followers?: string;
-  dealVolume?: string;
-  currentTool?: string;
-  pain?: string;
-  referrer?: string;
   utm_source?: string | null;
 };
-
-// Tag emails by segment so you can sort / segment the Resend audience later.
-function segmentTag(payload: Payload): string {
-  if (!payload.dealVolume) return "no-deal-info";
-  if (payload.dealVolume.startsWith("10+")) return "high-volume";
-  if (payload.dealVolume.startsWith("4")) return "mid-volume";
-  if (payload.dealVolume.startsWith("1")) return "early-volume";
-  return "pre-monetization";
-}
 
 export async function POST(req: Request) {
   let body: Payload;
@@ -40,15 +26,11 @@ export async function POST(req: Request) {
 
   // Dev fallback: if no API key, just log + succeed. Lets the form work locally.
   if (!apiKey) {
-    console.warn("[waitlist] RESEND_API_KEY missing. Logging instead:", {
-      email,
-      ...body,
-    });
+    console.warn("[waitlist] RESEND_API_KEY missing. Logging instead:", { email, ...body });
     return NextResponse.json({ ok: true, dev: true });
   }
 
   const resend = new Resend(apiKey);
-  const tag = segmentTag(body);
 
   try {
     // 1. Add to audience (so you can broadcast later)
@@ -66,28 +48,23 @@ export async function POST(req: Request) {
       });
     }
 
-    // 2. Auto-welcome email to the user
+    // 2. Auto-confirmation email to the subscriber
     await resend.emails.send({
       from: notifyFrom,
       to: email,
-      subject: "You're on the SponsorDesk list",
-      html: welcomeHtml(email),
+      subject: "You're subscribed to SponsorDesk updates",
+      html: welcomeHtml(),
     });
 
-    // 3. Notification to the founder with the qualifiers
+    // 3. Notification to the founder
     await resend.emails.send({
       from: notifyFrom,
       to: notifyTo,
-      subject: `[Waitlist · ${tag}] ${email}`,
+      subject: `[Updates list] ${email}`,
       text: [
         `Email: ${email}`,
-        `Followers: ${body.followers ?? "-"}`,
-        `Deals/mo: ${body.dealVolume ?? "-"}`,
-        `Current tool: ${body.currentTool ?? "-"}`,
-        `Pain: ${body.pain ?? "-"}`,
-        `Referrer: ${body.referrer ?? "-"}`,
+        `Referrer: ${req.headers.get("referer") ?? "-"}`,
         `UTM source: ${body.utm_source ?? "-"}`,
-        `Tag: ${tag}`,
         `---`,
         new Date().toISOString(),
       ].join("\n"),
@@ -103,22 +80,19 @@ export async function POST(req: Request) {
   }
 }
 
-function welcomeHtml(email: string): string {
+function welcomeHtml(): string {
   return `
-  <div style="font-family: ui-sans-serif, system-ui; max-width: 560px; margin: 0 auto; padding: 32px 0; color: #18181b;">
-    <h1 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">You're on the list.</h1>
+  <div style="font-family: ui-sans-serif, system-ui; max-width: 560px; margin: 0 auto; padding: 32px 0; color: #111113;">
+    <h1 style="font-size: 22px; font-weight: 700; margin: 0 0 16px;">You're on the updates list.</h1>
     <p style="font-size: 15px; line-height: 1.6; margin: 0 0 16px;">
-      Thanks for signing up for SponsorDesk, a CRM built for individual creators managing brand deals.
-    </p>
-    <p style="font-size: 15px; line-height: 1.6; margin: 0 0 16px;">
-      I'm building this solo in public — and it's live right now. Head to
-      <a href="https://sponsordesk-app-v2.vercel.app/sign-up" style="color: #ea580c;">sponsordesk-app-v2.vercel.app</a>
-      to create your account. Founder pricing is locked in for life.
+      SponsorDesk is live right now — you don't have to wait for anything. Head to
+      <a href="https://sponsordesk-app-v2.vercel.app/sign-up" style="color: #2b4bff;">sponsordesk-app-v2.vercel.app</a>
+      to create your account and lock in $9/mo founder pricing for life.
     </p>
     <p style="font-size: 15px; line-height: 1.6; margin: 0 0 24px;">
-      In the meantime, if you want to shape what gets built first, reply to this email with the one thing that makes you lose the most sleep about brand deals.
+      I'll email this list when new features and the Pro tier ship. If you want to shape what gets built next, just reply to this email.
     </p>
-    <p style="font-size: 14px; color: #71717a; margin: 0;">
+    <p style="font-size: 14px; color: #6b6e79; margin: 0;">
       - The SponsorDesk team
     </p>
   </div>`;
