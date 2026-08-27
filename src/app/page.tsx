@@ -5,6 +5,7 @@ import { ProductPreview } from "@/components/ProductPreview";
 import { QuoteWall } from "@/components/QuoteWall";
 import { FAQ } from "@/components/FAQ";
 import { Pricing } from "@/components/Pricing";
+import { ShaderBackground } from "@/components/ShaderBackground";
 import { ArrowRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
 
@@ -78,7 +79,21 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-[1180px] px-5 pb-28 md:px-8">
-      {/* NAV */}
+      {/* NAV + HERO, shader-backed */}
+      <div style={{ position: "relative" }}>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+          style={{
+            zIndex: 0,
+            opacity: 0.4,
+            maskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
+          }}
+        >
+          <ShaderBackground className="h-full w-full" />
+        </div>
+        <div style={{ position: "relative", zIndex: 1 }}>
       <nav className="flex h-20 items-center justify-between">
         <Logo />
         <div className="flex items-center gap-4">
@@ -187,6 +202,8 @@ export default function HomePage() {
           <ProductPreview />
         </div>
       </section>
+        </div>
+      </div>
 
       {/* SOCIAL PROOF */}
       <section className="mt-24 md:mt-32">
@@ -275,23 +292,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* FOOTER, shader-backed */}
       <footer
-        className="mt-20 flex flex-col gap-3 pt-8 text-[13px] md:flex-row md:items-center md:justify-between"
-        style={{ borderTop: "1px solid var(--border-subtle)", ...sans, color: "var(--text-muted)" }}
+        className="relative mt-20 overflow-hidden pt-8"
+        style={{ borderTop: "1px solid var(--border-subtle)" }}
       >
-        <div className="flex items-center gap-2">
-          <Image src="/logo-mark.png" alt="" width={14} height={16} style={{ height: 16, width: "auto" }} />
-          <span>SponsorDesk</span>
-          <span aria-hidden>·</span>
-          <span>Built solo in public</span>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ zIndex: 0, opacity: 0.14 }}
+        >
+          <ShaderBackground className="h-full w-full" />
         </div>
-        <div className="flex items-center gap-4">
-          <a href="mailto:hello@sponsordesk.io" style={{ color: "var(--text-muted)" }}>
-            hello@sponsordesk.io
-          </a>
-          <span aria-hidden>·</span>
-          <span style={mono}>© 2026</span>
+        <div
+          className="relative flex flex-col gap-3 text-[13px] md:flex-row md:items-center md:justify-between"
+          style={{ zIndex: 1, ...sans, color: "var(--text-muted)" }}
+        >
+          <div className="flex items-center gap-2">
+            <Image src="/logo-mark.png" alt="" width={14} height={16} style={{ height: 16, width: "auto" }} />
+            <span>SponsorDesk</span>
+            <span aria-hidden>·</span>
+            <span>Built solo in public</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="mailto:hello@sponsordesk.io" style={{ color: "var(--text-muted)" }}>
+              hello@sponsordesk.io
+            </a>
+            <span aria-hidden>·</span>
+            <span style={mono}>© 2026</span>
+          </div>
         </div>
       </footer>
     </main>
