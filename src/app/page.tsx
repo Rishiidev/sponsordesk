@@ -345,6 +345,16 @@ export default function HomePage() {
             </p>
           </div>
 
+          <a
+            href="https://invoice-generator-eight-umber.vercel.app/?utm_source=sponsordesk-waitlist&utm_medium=footer&utm_campaign=cross-promo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13px]"
+            style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
+          >
+            Free invoice generator <span aria-hidden>↗</span>
+          </a>
+
           <div className="flex flex-col gap-2 md:items-end">
             <a href="mailto:hello@sponsordesk.io" className="text-[13px]" style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}>
               hello@sponsordesk.io
