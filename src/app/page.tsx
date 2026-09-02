@@ -97,15 +97,17 @@ export default function HomePage() {
         </div>
         <div className="mx-auto max-w-[1180px] px-5 md:px-8" style={{ position: "relative", zIndex: 1 }}>
       <nav className="flex h-20 items-center justify-between">
-        <Logo />
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
+          <Logo />
           <a
             href="/tools"
             className="hidden text-[14px] md:inline"
             style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}
           >
-            Tools
+            Free Tools
           </a>
+        </div>
+        <div className="flex items-center gap-4">
           <a
             href={SIGN_IN}
             className="hidden text-[14px] md:inline"
