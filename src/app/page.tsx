@@ -355,11 +355,11 @@ export default function HomePage() {
           </div>
 
           <a
-            href="/tools/invoice-generator"
+            href="/tools"
             className="text-[13px]"
             style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
           >
-            Free invoice generator <span aria-hidden>→</span>
+            Free tools <span aria-hidden>→</span>
           </a>
 
           <div className="flex flex-col gap-2 md:items-end">

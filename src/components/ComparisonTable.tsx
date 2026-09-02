@@ -15,7 +15,7 @@ const ROWS: Row[] = [
   { feature: "Brand deal pipeline (kanban)", ours: true, july: true, notion: "DIY", grin: true },
   { feature: "Contract storage", ours: true, july: true, notion: "DIY", grin: true },
   { feature: "Deliverable reminders", ours: true, july: true, notion: false, grin: true },
-  { feature: "Invoice generator", ours: "Soon", july: true, notion: "DIY", grin: true },
+  { feature: "Invoice generator", ours: true, july: true, notion: "DIY", grin: true },
   { feature: "AI follow-up drafts", ours: "Soon", july: true, notion: false, grin: false },
   { feature: "Built-in usage rights tracker", ours: true, july: false, notion: false, grin: true },
   { feature: "Takes a % of your deal", ours: false, july: false, notion: false, grin: false },
