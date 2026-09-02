@@ -9,4 +9,6 @@
   --border-hairline:1px;--border-thick:1.5px;
 
   --gutter:24px;--page-max:1200px;--content-max:720px;
+  --sidebar-w:248px;--topbar-h:60px;--control-h:36px;--control-h-lg:44px;
+  --bottom-nav-h:62px;
 }
