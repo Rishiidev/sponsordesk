@@ -100,6 +100,13 @@ export default function HomePage() {
         <Logo />
         <div className="flex items-center gap-4">
           <a
+            href="/tools"
+            className="hidden text-[14px] md:inline"
+            style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}
+          >
+            Tools
+          </a>
+          <a
             href={SIGN_IN}
             className="hidden text-[14px] md:inline"
             style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}
