@@ -1,8 +1,16 @@
+import { headers } from "next/headers";
+
 import { RateCalculatorForm } from "@/components/rate-calculator-form";
 import { SponsorDeskBrand } from "@/components/sponsordesk-brand";
 import { ToolsHeader } from "@/components/tools-header";
+import { resolveCurrencyFromCountry } from "@/lib/geo-currency";
 
-export default function RateCalculatorPage() {
+export default async function RateCalculatorPage() {
+  // Vercel sets this header at the edge for every request that reaches it;
+  // absent in local dev, where resolveCurrencyFromCountry falls back to USD.
+  const country = (await headers()).get("x-vercel-ip-country");
+  const defaultCurrency = resolveCurrencyFromCountry(country);
+
   return (
     <div className="min-h-screen bg-background">
       <ToolsHeader />
@@ -15,7 +23,7 @@ export default function RateCalculatorPage() {
           </p>
         </div>
 
-        <RateCalculatorForm />
+        <RateCalculatorForm defaultCurrency={defaultCurrency} />
       </main>
 
       <SponsorDeskBrand variant="footer" toolSlug="rate-calculator" />

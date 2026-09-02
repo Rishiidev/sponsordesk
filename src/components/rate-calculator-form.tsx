@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CURRENCIES } from "@/lib/currencies";
+import { convertFromUSD, formatCurrencyAmount } from "@/lib/geo-currency";
 import {
   PLATFORMS,
   NICHES,
@@ -14,16 +16,13 @@ import {
   type Niche,
 } from "@/lib/rate-calculator";
 
-function formatUSD(value: number): string {
-  return value.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-}
-
-export function RateCalculatorForm() {
+export function RateCalculatorForm({ defaultCurrency }: { defaultCurrency: string }) {
   const [platform, setPlatform] = useState<Platform>("instagram");
   const [audienceSize, setAudienceSize] = useState("");
   const [engagementRate, setEngagementRate] = useState("");
   const [deliverableId, setDeliverableId] = useState(PLATFORMS.instagram.deliverables[0].id);
   const [niche, setNiche] = useState<Niche>("general");
+  const [currency, setCurrency] = useState(defaultCurrency);
 
   const config = PLATFORMS[platform];
 
@@ -44,6 +43,15 @@ export function RateCalculatorForm() {
     setPlatform(next);
     setDeliverableId(PLATFORMS[next].deliverables[0].id);
     setEngagementRate("");
+    // Audience size means something different per platform (followers vs.
+    // downloads vs. subscribers) — carrying the old number over would look
+    // like a real estimate for a metric the visitor never actually entered.
+    setAudienceSize("");
+  }
+
+  function handleEngagementBlur() {
+    const n = Number(engagementRate);
+    if (Number.isFinite(n) && n < 0) setEngagementRate("0");
   }
 
   return (
@@ -54,20 +62,37 @@ export function RateCalculatorForm() {
           <CardDescription>Rough estimate for one sponsored deliverable.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
-          <div className="space-y-1.5">
-            <Label htmlFor="platform">Platform</Label>
-            <Select value={platform} onValueChange={(value) => typeof value === "string" && handlePlatformChange(value)}>
-              <SelectTrigger id="platform" className="w-full">
-                <SelectValue>{(value: Platform) => PLATFORMS[value]?.label}</SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                {(Object.entries(PLATFORMS) as [Platform, typeof PLATFORMS[Platform]][]).map(([id, p]) => (
-                  <SelectItem key={id} value={id}>
-                    {p.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="platform">Platform</Label>
+              <Select value={platform} onValueChange={(value) => typeof value === "string" && handlePlatformChange(value)}>
+                <SelectTrigger id="platform" className="w-full">
+                  <SelectValue>{(value: Platform) => PLATFORMS[value]?.label}</SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  {(Object.entries(PLATFORMS) as [Platform, typeof PLATFORMS[Platform]][]).map(([id, p]) => (
+                    <SelectItem key={id} value={id}>
+                      {p.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="currency">Currency</Label>
+              <Select value={currency} onValueChange={(value) => typeof value === "string" && setCurrency(value)}>
+                <SelectTrigger id="currency" className="w-full">
+                  <SelectValue>{(value: string) => CURRENCIES.find((c) => c.code === value)?.code}</SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  {CURRENCIES.map((c) => (
+                    <SelectItem key={c.code} value={c.code}>
+                      {c.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -96,6 +121,7 @@ export function RateCalculatorForm() {
                 placeholder={config.typicalEngagementRate !== null ? String(config.typicalEngagementRate) : ""}
                 value={engagementRate}
                 onChange={(e) => setEngagementRate(e.target.value)}
+                onBlur={handleEngagementBlur}
                 disabled={config.typicalEngagementRate === null}
               />
             </div>
@@ -144,12 +170,21 @@ export function RateCalculatorForm() {
           {estimate ? (
             <>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-semibold tracking-tight text-foreground">{formatUSD(estimate.mid)}</span>
+                <span className="text-3xl font-semibold tracking-tight text-foreground">
+                  {formatCurrencyAmount(convertFromUSD(estimate.mid, currency), currency)}
+                </span>
                 <span className="text-sm text-muted-foreground">typical</span>
               </div>
               <p className="mt-1 text-sm text-muted-foreground">
-                Range: {formatUSD(estimate.low)} – {formatUSD(estimate.high)}
+                Range: {formatCurrencyAmount(convertFromUSD(estimate.low, currency), currency)} –{" "}
+                {formatCurrencyAmount(convertFromUSD(estimate.high, currency), currency)}
               </p>
+              {currency !== "USD" && (
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Converted from a USD estimate at an approximate rate — local sponsorship rates vary by market,
+                  not just currency.
+                </p>
+              )}
             </>
           ) : (
             <p className="text-sm text-muted-foreground">Enter your {config.audienceLabel.toLowerCase()} to see an estimate.</p>
