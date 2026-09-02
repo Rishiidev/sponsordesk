@@ -7,6 +7,7 @@ import { InvoiceForm } from "@/components/invoice-form";
 import { InvoicePreview } from "@/components/invoice-preview";
 import { MobileTabSwitcher, type MobileTab } from "@/components/mobile-tab-switcher";
 import { SponsorDeskBrand } from "@/components/sponsordesk-brand";
+import { ToolsHeader } from "@/components/tools-header";
 import { useIsDesktopLayout } from "@/hooks/use-is-desktop-layout";
 import { invoiceReducer } from "@/lib/invoice-reducer";
 import { loadInvoiceFromStorage, saveInvoiceToStorage } from "@/lib/invoice-storage";
@@ -53,6 +54,7 @@ export default function InvoiceGeneratorPage() {
   if (isDesktop) {
     return (
       <div className="min-h-screen bg-background print:bg-white">
+        <ToolsHeader />
         <header className="border-b border-border bg-card shadow-[var(--shadow-xs)] print:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between md:px-6 lg:px-8">
             <div>
@@ -89,6 +91,7 @@ export default function InvoiceGeneratorPage() {
   // reflowed), and a fixed bottom bar for the primary action.
   return (
     <div className="flex h-dvh flex-col bg-background print:block print:h-auto">
+      <ToolsHeader />
       <div className="shrink-0 border-b border-border bg-card px-4 pt-3 pb-2 shadow-[var(--shadow-xs)] print:hidden">
         <p className="mb-2 text-base font-semibold tracking-tight">Invoice Generator</p>
         <MobileTabSwitcher active={mobileTab} onChange={setMobileTab} />
