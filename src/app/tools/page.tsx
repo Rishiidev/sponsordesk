@@ -3,23 +3,12 @@ import type { Metadata } from "next";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ToolsHeader } from "@/components/tools-header";
+import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "Free Tools — SponsorDesk",
   description: "Free browser-based tools for creators, built by SponsorDesk. No sign-up required.",
 };
-
-/**
- * One entry per tool under /tools/*. Add a tool by adding a row here —
- * everything else (this grid, the header nav) is already wired up.
- */
-const TOOLS = [
-  {
-    slug: "invoice-generator",
-    name: "Invoice Generator",
-    description: "Create and print professional invoices in your browser. No sign-up, no backend.",
-  },
-];
 
 export default function ToolsIndexPage() {
   return (

@@ -7,6 +7,7 @@ import { TestimonialsWall } from "@/components/ui/testimonial-v2";
 import { FAQ } from "@/components/FAQ";
 import { Pricing } from "@/components/Pricing";
 import { ShaderBackground } from "@/components/ShaderBackground";
+import { TOOLS } from "@/lib/tools";
 import { ArrowRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
 
@@ -97,16 +98,7 @@ export default function HomePage() {
         </div>
         <div className="mx-auto max-w-[1180px] px-5 md:px-8" style={{ position: "relative", zIndex: 1 }}>
       <nav className="flex h-20 items-center justify-between">
-        <div className="flex items-center gap-6">
-          <Logo />
-          <a
-            href="/tools"
-            className="hidden text-[14px] md:inline"
-            style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}
-          >
-            Free Tools
-          </a>
-        </div>
+        <Logo />
         <div className="flex items-center gap-4">
           <a
             href={SIGN_IN}
@@ -289,6 +281,13 @@ export default function HomePage() {
           <div className="mt-5">
             <WaitlistForm />
           </div>
+          <a
+            href="/tools"
+            className="mt-4 inline-block text-[12.5px]"
+            style={{ ...sans, color: "var(--text-muted)" }}
+          >
+            Or try a free tool — no email needed <span aria-hidden>→</span>
+          </a>
         </div>
       </section>
 
@@ -354,13 +353,25 @@ export default function HomePage() {
             </p>
           </div>
 
-          <a
-            href="/tools"
-            className="text-[13px]"
-            style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
-          >
-            Free tools <span aria-hidden>→</span>
-          </a>
+          <div className="flex flex-col items-start gap-1.5">
+            <a
+              href="/tools"
+              className="text-[13px]"
+              style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
+            >
+              Free tools <span aria-hidden>→</span>
+            </a>
+            {TOOLS.map((tool) => (
+              <a
+                key={tool.slug}
+                href={`/tools/${tool.slug}`}
+                className="text-[12.5px]"
+                style={{ ...sans, color: "var(--text-muted)" }}
+              >
+                {tool.name}
+              </a>
+            ))}
+          </div>
 
           <div className="flex flex-col gap-2 md:items-end">
             <a href="mailto:hello@sponsordesk.io" className="text-[13px]" style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}>
