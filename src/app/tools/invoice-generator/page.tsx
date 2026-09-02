@@ -80,7 +80,7 @@ export default function InvoiceGeneratorPage() {
           </div>
         </main>
 
-        <SponsorDeskBrand variant="footer" />
+        <SponsorDeskBrand variant="footer" toolSlug="invoice-generator" />
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function InvoiceGeneratorPage() {
       <div className="shrink-0 border-b border-border bg-card px-4 pt-3 pb-2 shadow-[var(--shadow-xs)] print:hidden">
         <p className="mb-2 text-base font-semibold tracking-tight">Invoice Generator</p>
         <MobileTabSwitcher active={mobileTab} onChange={setMobileTab} />
-        <SponsorDeskBrand variant="inline" />
+        <SponsorDeskBrand variant="inline" toolSlug="invoice-generator" />
       </div>
 
       <div className="min-h-0 flex-1 overflow-hidden print:contents">

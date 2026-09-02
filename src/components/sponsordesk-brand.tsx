@@ -1,14 +1,13 @@
 import Image from "next/image";
 
-const SPONSORDESK_URL =
-  "https://sponsordesk-app-v2.vercel.app/sign-up?utm_source=invoice-generator&utm_medium=tool&utm_campaign=cross-promo";
-
 /**
  * Light, honest brand reveal: this tool is made by SponsorDesk, with a soft
  * CTA into its real sign-up. Never rendered in the printed invoice — a
  * client receiving the PDF shouldn't see an ad on their own invoice.
  */
-export function SponsorDeskBrand({ variant }: { variant: "footer" | "inline" }) {
+export function SponsorDeskBrand({ variant, toolSlug }: { variant: "footer" | "inline"; toolSlug: string }) {
+  const SPONSORDESK_URL = `https://sponsordesk-app-v2.vercel.app/sign-up?utm_source=${toolSlug}&utm_medium=tool&utm_campaign=cross-promo`;
+
   if (variant === "inline") {
     return (
       <a

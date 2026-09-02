@@ -156,7 +156,12 @@ export function InvoiceForm({ invoice, dispatch }: InvoiceFormProps) {
                 }}
               >
                 <SelectTrigger id="currency" className="w-full">
-                  <SelectValue placeholder="Select a currency" />
+                  {/* Base UI's SelectValue shows the raw value, not the matching item's
+                      label, unless given a render function — without this it would show
+                      "USD" instead of "USD — US Dollar". */}
+                  <SelectValue placeholder="Select a currency">
+                    {(value: string) => CURRENCIES.find((c) => c.code === value)?.label ?? "Select a currency"}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {CURRENCIES.map((currency) => (

@@ -9,4 +9,9 @@ export const TOOLS = [
     name: "Invoice Generator",
     description: "Create and print professional invoices in your browser. No sign-up, no backend.",
   },
+  {
+    slug: "rate-calculator",
+    name: "Rate Calculator",
+    description: "Estimate what to charge for a sponsored post based on platform, audience, and niche.",
+  },
 ] as const;
