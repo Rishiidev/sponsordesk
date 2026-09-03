@@ -302,6 +302,53 @@ export default function HomePage() {
         <FAQ />
       </section>
 
+      {/* ESCALATION PATH */}
+      <section className="mt-24 md:mt-32">
+        <div className="mb-10 max-w-[60ch]">
+          <SectionHeading>What happens when a brand goes quiet.</SectionHeading>
+          <p className="mt-3 text-[16px]" style={{ ...sans, color: "var(--text-secondary)" }}>
+            Every step below is a real, working part of the product — not a plan.
+          </p>
+        </div>
+
+        <ol className="flex flex-col gap-0">
+          {[
+            { step: "Terms agreed", body: "Net days, late fee, and a terms note are set on the deal before work starts." },
+            { step: "Day 3, 7, 14 overdue", body: "Automated reminder emails, referencing the terms the brand already agreed to." },
+            { step: "Grace period ends", body: "The configured late fee is suggested on the invoice — reviewed and applied with one click, never silently." },
+            { step: "14 days overdue", body: "The demand letter unlocks — a formal, firmer notice, one click to send." },
+          ].map((item, i, arr) => (
+            <li key={item.step} className="flex gap-4">
+              <div className="flex flex-col items-center">
+                <span
+                  className="flex h-8 w-8 shrink-0 items-center justify-center text-[13px] font-semibold"
+                  style={{ borderRadius: "999px", background: "var(--cobalt-100)", color: "var(--cobalt-600)" }}
+                >
+                  {i + 1}
+                </span>
+                {i < arr.length - 1 && <span className="w-px flex-1" style={{ background: "var(--border-subtle)", minHeight: 24 }} />}
+              </div>
+              <div className="pb-8">
+                <p className="font-semibold" style={{ ...sans, color: "var(--text-primary)" }}>
+                  {item.step}
+                </p>
+                <p className="mt-1 text-[14.5px]" style={{ ...sans, color: "var(--text-secondary)" }}>
+                  {item.body}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <a
+          href="/features"
+          className="inline-flex items-center gap-1.5 text-[14px]"
+          style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
+        >
+          See all features <span aria-hidden>→</span>
+        </a>
+      </section>
+
       {/* UPDATES — secondary, low-friction */}
       <section id="updates" className="mt-24 md:mt-32">
         <div
