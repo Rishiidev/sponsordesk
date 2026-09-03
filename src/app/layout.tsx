@@ -16,16 +16,17 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sponsordesk.io"),
+  metadataBase: new URL("https://sponsordesk.bruuhh.com"),
   title: "SponsorDesk — Track brand deals without losing your mind",
   description:
     "A lightweight CRM for creators who actually close brand deals. Stop tracking sponsors in spreadsheets.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "SponsorDesk",
     description:
       "A lightweight CRM for creators who actually close brand deals.",
     type: "website",
-    url: "https://sponsordesk.io",
+    url: "https://sponsordesk.bruuhh.com",
   },
   twitter: {
     card: "summary_large_image",

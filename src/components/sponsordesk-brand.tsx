@@ -6,7 +6,7 @@ import Image from "next/image";
  * client receiving the PDF shouldn't see an ad on their own invoice.
  */
 export function SponsorDeskBrand({ variant, toolSlug }: { variant: "footer" | "inline"; toolSlug: string }) {
-  const SPONSORDESK_URL = `https://sponsordesk-app-v2.vercel.app/sign-up?utm_source=${toolSlug}&utm_medium=tool&utm_campaign=cross-promo`;
+  const SPONSORDESK_URL = `https://app.sponsordesk.bruuhh.com/sign-up?utm_source=${toolSlug}&utm_medium=tool&utm_campaign=cross-promo`;
 
   if (variant === "inline") {
     return (

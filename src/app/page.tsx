@@ -21,7 +21,7 @@ const mono: React.CSSProperties = { fontFamily: "var(--font-mono)" };
 function Logo() {
   return (
     <a href="/" className="flex items-center gap-2.5">
-      <Image src="/logo-mark.png" alt="" width={19} height={22} priority style={{ height: 22, width: "auto" }} />
+      <Image src="/logo-mark.png" alt="SponsorDesk" width={19} height={22} priority style={{ height: 22, width: "auto" }} />
       <span className="text-[16px]" style={{ ...display, fontWeight: "var(--weight-extrabold)", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "var(--tracking-tighter)" }}>
         SponsorDesk
       </span>
@@ -78,9 +78,38 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
   );
 }
 
+const ORG_AND_PRODUCT_JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "SponsorDesk",
+      url: "https://sponsordesk.bruuhh.com",
+      logo: "https://sponsordesk.bruuhh.com/logo-mark.png",
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "SponsorDesk",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description:
+        "A lightweight CRM for creators who actually close brand deals. Deal pipeline, contract storage, follow-up reminders, and invoicing built for solo creators.",
+      offers: [
+        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD" },
+        { "@type": "Offer", name: "Founder", price: "9", priceCurrency: "USD" },
+      ],
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-[1180px] px-5 pb-28 md:px-8">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_AND_PRODUCT_JSON_LD) }}
+      />
       {/* NAV + HERO, shader-backed — breaks out to full viewport width so the
           gradient reaches both edges, independent of main's max-w column */}
       <div style={{ position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", width: "100vw", overflow: "hidden" }}>
@@ -343,7 +372,7 @@ export default function HomePage() {
         <div className="relative flex flex-col gap-10 md:flex-row md:items-start md:justify-between" style={{ zIndex: 1 }}>
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <Image src="/logo-mark.png" alt="" width={16} height={18} style={{ height: 18, width: "auto" }} />
+              <Image src="/logo-mark.png" alt="SponsorDesk" width={16} height={18} style={{ height: 18, width: "auto" }} />
               <span className="text-[15px]" style={{ ...display, fontWeight: "var(--weight-bold)", color: "var(--text-primary)", letterSpacing: "var(--tracking-tight)" }}>
                 SponsorDesk
               </span>
@@ -374,8 +403,8 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-col gap-2 md:items-end">
-            <a href="mailto:hello@sponsordesk.io" className="text-[13px]" style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}>
-              hello@sponsordesk.io
+            <a href="mailto:hello@mail.sponsordesk.bruuhh.com" className="text-[13px]" style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--text-secondary)" }}>
+              hello@mail.sponsordesk.bruuhh.com
             </a>
             <span className="text-[12px]" style={{ ...mono, color: "var(--text-muted)" }}>© 2026 SponsorDesk</span>
           </div>

@@ -21,8 +21,8 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const audienceId = process.env.RESEND_AUDIENCE_ID;
-  const notifyFrom = process.env.NOTIFY_FROM ?? "SponsorDesk <hello@sponsordesk.io>";
-  const notifyTo = process.env.NOTIFY_TO ?? "founder@sponsordesk.io";
+  const notifyFrom = process.env.NOTIFY_FROM ?? "SponsorDesk <hello@mail.sponsordesk.bruuhh.com>";
+  const notifyTo = process.env.NOTIFY_TO ?? "founder@mail.sponsordesk.bruuhh.com";
 
   // Dev fallback: if no API key, just log + succeed. Lets the form work locally.
   if (!apiKey) {

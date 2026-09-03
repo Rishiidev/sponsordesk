@@ -14,4 +14,9 @@ export const TOOLS = [
     name: "Rate Calculator",
     description: "Estimate what to charge for a sponsored post based on platform, audience, and niche.",
   },
+  {
+    slug: "media-kit-generator",
+    name: "Media Kit Generator",
+    description: "Create a professional media kit with your reach, platforms, and past collabs. No sign-up.",
+  },
 ] as const;

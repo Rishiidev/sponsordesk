@@ -3,7 +3,7 @@
 import { useReducer } from "react";
 import { ChevronDown } from "lucide-react";
 
-const FAQS = [
+export const FAQS = [
   {
     q: "Is this just a Notion template with extra steps?",
     a: "It's the opposite of one. Notion templates fail when you stop opening them. SponsorDesk runs in the background with follow-up reminders, deliverable windows, and payment chasing, without you logging in. Templates don't do that.",
@@ -36,8 +36,23 @@ export function FAQ() {
     0,
   );
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div style={{ borderTop: "1px solid var(--border-subtle)" }}>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {FAQS.map((f, i) => {
         const open = openIdx === i;
         return (
