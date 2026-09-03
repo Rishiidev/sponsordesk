@@ -11,8 +11,8 @@ import { TOOLS } from "@/lib/tools";
 import { ArrowRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
 
-const SIGN_UP = "https://sponsordesk-app-v2.vercel.app/sign-up";
-const SIGN_IN = "https://sponsordesk-app-v2.vercel.app/sign-in";
+const SIGN_UP = "https://app.sponsordesk.bruuhh.com/sign-up";
+const SIGN_IN = "https://app.sponsordesk.bruuhh.com/sign-in";
 
 const display: React.CSSProperties = { fontFamily: "var(--font-display)" };
 const sans: React.CSSProperties = { fontFamily: "var(--font-sans)" };

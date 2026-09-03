@@ -6,7 +6,7 @@ import { Check, Star } from "lucide-react";
 import confetti from "canvas-confetti";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
-const SIGN_UP = "https://sponsordesk-app-v2.vercel.app/sign-up";
+const SIGN_UP = "https://app.sponsordesk.bruuhh.com/sign-up";
 
 type Plan = {
   name: string;

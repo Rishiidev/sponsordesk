@@ -86,7 +86,7 @@ function welcomeHtml(): string {
     <h1 style="font-size: 22px; font-weight: 700; margin: 0 0 16px;">You're on the updates list.</h1>
     <p style="font-size: 15px; line-height: 1.6; margin: 0 0 16px;">
       SponsorDesk is live right now — you don't have to wait for anything. Head to
-      <a href="https://sponsordesk-app-v2.vercel.app/sign-up" style="color: #2b4bff;">sponsordesk-app-v2.vercel.app</a>
+      <a href="https://app.sponsordesk.bruuhh.com/sign-up" style="color: #2b4bff;">app.sponsordesk.bruuhh.com</a>
       to create your account and lock in $9/mo founder pricing for life.
     </p>
     <p style="font-size: 15px; line-height: 1.6; margin: 0 0 24px;">
