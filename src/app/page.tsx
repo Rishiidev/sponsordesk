@@ -400,6 +400,13 @@ export default function HomePage() {
                 {tool.name}
               </a>
             ))}
+            <a
+              href="/blog"
+              className="mt-2 text-[13px]"
+              style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
+            >
+              Blog <span aria-hidden>→</span>
+            </a>
           </div>
 
           <div className="flex flex-col gap-2 md:items-end">
