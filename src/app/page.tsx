@@ -401,11 +401,25 @@ export default function HomePage() {
               </a>
             ))}
             <a
-              href="/blog"
+              href="/features"
               className="mt-2 text-[13px]"
               style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
             >
+              Features <span aria-hidden>→</span>
+            </a>
+            <a
+              href="/blog"
+              className="text-[13px]"
+              style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
+            >
               Blog <span aria-hidden>→</span>
+            </a>
+            <a
+              href="/glossary"
+              className="text-[12.5px]"
+              style={{ ...sans, color: "var(--text-muted)" }}
+            >
+              Glossary
             </a>
           </div>
 

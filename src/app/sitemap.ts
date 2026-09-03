@@ -8,6 +8,8 @@ const BASE_URL = "https://sponsordesk.bruuhh.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE_URL, changeFrequency: "weekly", priority: 1 },
+    { url: `${BASE_URL}/features`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/glossary`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/tools`, changeFrequency: "weekly", priority: 0.8 },
     ...TOOLS.map((tool) => ({
       url: `${BASE_URL}/tools/${tool.slug}`,

@@ -11,8 +11,8 @@ const FEATURES: { icon: LucideIcon; title: string; body: string }[] = [
   },
   {
     icon: FileText,
-    title: "Contract storage without the chaos",
-    body: "Attach contracts, usage-rights docs, and rate cards per deal. Find them in two clicks when an agency asks for proof.",
+    title: "Payment terms, in writing",
+    body: "Set net days, a late fee, and a plain-language terms note per deal. The brand sees it on every reminder — no more \"that wasn't the deal\" after the fact.",
   },
   {
     icon: Bell,

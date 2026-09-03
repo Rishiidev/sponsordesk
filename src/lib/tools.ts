@@ -19,4 +19,9 @@ export const TOOLS = [
     name: "Media Kit Generator",
     description: "Create a professional media kit with your reach, platforms, and past collabs. No sign-up.",
   },
+  {
+    slug: "demand-letter-generator",
+    name: "Demand Letter Generator",
+    description: "Create a formal demand letter for an overdue brand payment. No sign-up, no backend.",
+  },
 ] as const;
