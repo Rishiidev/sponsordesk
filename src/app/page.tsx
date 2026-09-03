@@ -263,6 +263,13 @@ export default function HomePage() {
           </p>
         </div>
         <FeatureGrid />
+        <a
+          href="/features"
+          className="mt-6 inline-flex items-center gap-1.5 text-[14px]"
+          style={{ ...sans, fontWeight: "var(--weight-medium)", color: "var(--cobalt-600)" }}
+        >
+          See the full feature breakdown <span aria-hidden>→</span>
+        </a>
       </section>
 
       {/* COMPARISON */}
